@@ -128,12 +128,13 @@ This plugin supports basic surround capabilities. Add to your `.vimrc`:
 
   ```
   " NOTE: be sure to remove these mappings if using tpope/vim-surround plugin!
-  xmap <silent> Sq <Plug>QuotableSurroundDouble
-  xmap <silent> SQ <Plug>QuotableSurroundSingle
+  map <silent> Sq <Plug>QuotableSurroundDouble
+  map <silent> SQ <Plug>QuotableSurroundSingle
   ```
 
-Then you can use motion commands to surround your text with quotes (an
-asterisk is used to denote the cursor position):
+Then you can use motion commands to surround your text with quotes:
+
+(an asterisk is used to denote the cursor position)
 
   ```
   visSq     My senten*ce. => “My sentence.”
@@ -203,6 +204,17 @@ But if you’re editing prose in German, you may want
   ```
   let g:quotable#single = ['‚','‘']     " ‚einzel‘
   let g:quotable#double = ['„','“']     " „doppel“
+  ```
+
+### Switching to other quote pairs
+
+  You may want the ability to switch quickly between quote pairs within the
+  current buffer. If so, simply create key mappings to reinitialize the buffer:
+
+  ```
+  nmap <silent> <leader>rs :call quotable#initialize()<cr>
+  nmap <silent> <leader>rd :call quotable#initialize('„“','‚‘')<cr>
+  nmap <silent> <leader>rx :call quotable#initialize('„”','‚’')<cr>
   ```
 
 ## FAQ

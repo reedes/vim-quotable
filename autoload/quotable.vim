@@ -61,9 +61,9 @@ function! quotable#surround(mode, visual)
   endif
   if a:visual ==# 'v'
     " note: the gv re-establishes the visual selection that <C-u> removed
-    execute "normal! gvc“\<C-r>\"” \<Esc>"
+    execute "normal! gvc" . l:l . "\<C-r>\"" . l:r ." \<Esc>"
   elseif a:visual ==# ''
-    execute "normal! ciw“\<C-r>\"”\<Esc>"
+    execute "normal! ciw" . l:l . "\<C-r>\"" . l:r . "\<Esc>"
   endif
 endfunction
 
@@ -97,8 +97,9 @@ function! quotable#initialize(...)
   endif
 
   " q/Q support for tpope/vim-surround
-  let b:surround_113 = b:quotable_dl . '\r' . b:quotable_dr
-  let b:surround_81  = b:quotable_sl . '\r' . b:quotable_sr
+  " TODO support other letters
+  let b:surround_113 = b:quotable_dl . "\r" . b:quotable_dr
+  let b:surround_81  = b:quotable_sl . "\r" . b:quotable_sr
 
   " add text object support
   call textobj#user#plugin('quotable', {

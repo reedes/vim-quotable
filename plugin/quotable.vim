@@ -44,29 +44,10 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" works!
-"nmap <Plug>quotableSurroundDouble ciwXX<c-r>"AA<esc>
-"vmap <Plug>quotableSurroundDouble cXX<c-r>"BB<esc>
-
-" worky!
-"nmap <silent> <Plug>quotableSurroundDouble :call quotable#stuff('')<cr>
-
-" worky!
-"vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
-"vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
-
-" no worky
-"nmap <Plug>quotableSurroundDouble <c-r>=quotable#surround(1, '')<cr>
-"vmap <Plug>quotableSurroundDouble <c-r>=quotable#surround(1, 'visual')<cr>
-
-"nmap <Plug>quotableSurroundDouble :echo "aaaa"<cr>
-"vmap <Plug>quotableSurroundDouble :echo "bbbb"<cr>
-"nmap <Plug>quotableSurroundDouble :call quotable#surround(1, '')<cr>
-"vmap <Plug>quotableSurroundDouble :call quotable#surround(1, 'visual')<cr>
-"nnoremap <silent> <Plug>quotableSurroundDouble :call quotable#surround(1, '')<cr>
-"vnoremap <silent> <Plug>quotableSurroundDouble :call quotable#surround(1, 'visual')<cr>
-"nnoremap <silent> <Plug>quotableSurroundSingle :call quotable#surround(0, '')<cr>
-"vnoremap <silent> <Plug>quotableSurroundSingle :call quotable#surround(0, 'visual')<cr>
+nmap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
+vmap <Plug>QuotableSurroundDouble :<C-u>call quotable#surround(1, visualmode())<cr>
+nmap <Plug>QuotableSurroundSingle :call quotable#surround(0, '')<cr>
+vmap <Plug>QuotableSurroundSingle :<C-u>call quotable#surround(0, visualmode())<cr>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
