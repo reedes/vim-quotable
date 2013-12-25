@@ -25,20 +25,9 @@ function! s:educateQuotes(mode)
   let left = leading_char_count > 0
         \ ? leading_chars[ leading_char_count - 1 ]
         \ : ''
-  return left =~# '^\(\|\s\|{\|(\|\[\|&\)$' || left ==# l:al
+  return left =~# '^\(\|\s\|{\|(\|\[\|&\|—\|—\|-\)$' || left ==# l:al
         \ ? l:l
         \ : l:r
-endfunction
-
-function! quotable#stuff(visual)
-  if a:visual ==# 'visual'
-    "exe "normal! c“\<C-r>\"” \<Esc>"
-    "normal! c“<C-r>"” <Esc>
-    execute "normal! c“\<C-r>\"” \<Esc>"
-  else
-    " works!
-    exe "normal! ciw“\<c-r>\"”\<esc>"
-  endif
 endfunction
 
 function! quotable#surround(mode, visual)
@@ -63,7 +52,7 @@ endfunction
 
 " set up mappings for current buffer only
 " initialize buffer-scoped variables
-function! quotable#initialize(...)
+function! quotable#init(...)
   if !s:unicode_enabled() | return | endif
 
   " obtain the quote pairs, from args or defaults

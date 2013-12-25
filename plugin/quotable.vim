@@ -47,6 +47,7 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" a simple alterative to tpope/vim-surround
 nmap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
 vmap <Plug>QuotableSurroundDouble :<C-u>call quotable#surround(1, visualmode())<cr>
 nmap <Plug>QuotableSurroundSingle :call quotable#surround(0, '')<cr>
