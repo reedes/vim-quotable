@@ -1,6 +1,6 @@
 `vim-quotable`
 
-`“Extend Vim to better support ‘typographic’ quote characters.”`
+`“Extend Vim to better support ‘typographic’ quote characters.” —Me`
 
 While Vim is renown for its text editing capabilities, it nevertheless retains
 a bias towards ASCII that stretches back to its roots. This can limit its
@@ -11,7 +11,7 @@ Features of this plugin:
 
 * Automatic entry of ‘typographic quotes’ from the 'straight quote' key
 * Buffer-scoped—affects only those buffers in which you enable it
-* Motion commands for “double quotes” and ‘single quotes’
+* Motion support for “double quotes” and ‘single quotes’
 * Matchit `%` matching for typographic character pairs
 * Support for alternative quote pairings
 
@@ -35,8 +35,8 @@ must be installed.
 
 ## Configuration
 
-You will typically want the capabilities of this plugin on certain file types,
-such as markdown or textile.
+You will typically want the capabilities of this plugin applied only to
+certain file types, such as markdown or textile.
 
   ```
   augroup quotable
@@ -46,8 +46,8 @@ such as markdown or textile.
   augroup END
   ```
 
-That will ensure that only buffers of the filetypes you specify will get the
-capabilities offered by this plugin.
+That will ensure that only buffers of the file types you specify will get
+the capabilities offered by this plugin.
 
 Alternatively, you can place the following in your
 `~/.vim/after/ftplugin/markdown.vim`:
@@ -69,20 +69,21 @@ typographical quote character.
 For example, entering the following sentence without this plugin:
 
   ```
-  "I'm still infected," cautioned O'Reilly.
+  "I'm still infected," cautioned O'Malley.
   ```
 
 All the quotes are straight. But with this plugin, the straight quotes you
 enter are transformed into the appropriate typographical equivalent:
 
   ```
-  “I’m still infected,” cautioned O’Reilly.
+  “I’m still infected,” cautioned O’Malley.
   ```
 
-However, in some cases you will want to retain the straight quote, such as:
+However, in some cases you will want to retain the straight quote, such
+as:
 
   ```
-  “It snowed 12" overnight,” said Bob, who hates the metric system.
+  “It snowed 12" overnight,” said Bob, who loathes the metric system.
   ```
 
 To avoid expansion and insert a "straight" quote character, precede key with
@@ -106,10 +107,12 @@ Motion commands are a powerful feature of Vim.
 For motion commands, `q` denotes “double” quotes and `Q` denotes ‘single’
 quotes.
 
-`ciq` - [Change Inside “double” curly quotes]
-`ciQ` - [Change Inside ‘single’ curly quotes]
-`caq` - [Change Around “double” curly quotes] - selection include quotes
-`caQ` - [Change Around ‘single’ curly quotes] - selection include quotes
+`ciq` - [Change Inside “double” quotes] - excludes quote chars
+`ciQ` - [Change Inside ‘single’ quotes] - excludes quote chars
+`caq` - [Change Around “double” quotes] - includes quote chars
+`caQ` - [Change Around ‘single’ quotes] - includes quote chars
+
+Apart from `c` for change, you can `v` for visual selection, `d` for deletion, `y` for yanking to clipboard, etc.
 
 ### Matchit support
 
@@ -138,7 +141,7 @@ asterisk is used to denote the cursor position):
   ```
 
 Alternatively, if you’ve installed Tim Pope’s [vim-surround][] plugin you also
-have replace abilities on many existing surrounds:
+have replace abilities on pairs of characters:
 
   ```
   cs'q      'Hello W*orld' => “Hello World”
@@ -174,13 +177,13 @@ or via operating system keyboard shortcuts.
 | æ     | ae      | Opt-'            | lowercase ae
 
 For example, to enter left double quotation mark (“), precede the digraph code
-with Ctrl-K, like
+("6) with Ctrl-K, like
 
   ```
   «Ctrl-K»"6
   ```
 
-Alternatively, if you’re on OS X, you can enter Opt-`[`.
+Alternatively, if you’re on OS X, you can enter Opt-`[` to enter this character.
 
 For more details, see:
 
@@ -207,8 +210,8 @@ But if you’re editing prose in German, you may want
 Q: Why not support «guillemets» and other quote pairs?
 
 A: For those who use these quote pairs, chances are that they appear on their
-keyboard where they can be entered directly. There is no need to translate from
-the ['] and ["] keys.
+keyboard where the characters can be entered directly. There is no need to
+translate from the ['] and ["] keys.
 
 ## TODO
 
@@ -216,9 +219,8 @@ This plugin can benefit from additional work.
 
 * Better support for motion.
 * Tools for converting between typographic and typewriter characters.
-* Not working on replace.
+* Not working on replace or on command line.
 * Right to left support.
 
-If you have any ideas, please post them to the github project issue page.
-
+If you have any ideas on improving this plugin, please post them to the github project issue page.
 

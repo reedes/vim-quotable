@@ -18,18 +18,24 @@ let g:loaded_quotable = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-if !exists('g:quotable#single')
-  "  ‘single’
-  let g:quotable#single = ['‘', '’']
+if !exists('g:quotable#doubleMotion')
+  let g:quotable#doubleMotion = 'q'
+endif
+if !exists('g:quotable#singleMotion')
+  let g:quotable#singleMotion = 'Q'
 endif
 
-if !exists('g:quotable#double')
+if !exists('g:quotable#doubleDefault')
   "  “double”
-  let g:quotable#double = ['“', '”']
+  let g:quotable#doubleDefault = '“”'
+endif
+if !exists('g:quotable#singleDefault')
+  "  ‘single’
+  let g:quotable#singleDefault = '‘’'
 endif
 
 if !exists('g:quotable#educateQuotes')
-  " translate 'straight quotes' to “quotableal quotes”
+  " translate "straight quotes" to “typographical quotes”
   let g:quotable#educateQuotes = 1
 endif
 
@@ -38,16 +44,29 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" create mappings for current buffer only
-command -nargs=0 QuotableInit  call quotable#initialize()
+" works!
+"nmap <Plug>quotableSurroundDouble ciwXX<c-r>"AA<esc>
+"vmap <Plug>quotableSurroundDouble cXX<c-r>"BB<esc>
 
-" wrap word/selection in curly quotes
-" A simple alternative to Tim Pope's vim-surround
-" TODO adapt to configured pairs
-nnoremap <silent> <Plug>quotableSurroundSingle ciw‘<C-r>"’<Esc>
-vnoremap <silent> <Plug>quotableSurroundSingle c‘<C-r>"’ <Esc>
-nnoremap <silent> <Plug>quotableSurroundDouble ciw“<C-r>"”<Esc>
-vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
+" worky!
+"nmap <silent> <Plug>quotableSurroundDouble :call quotable#stuff('')<cr>
+
+" worky!
+"vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
+"vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
+
+" no worky
+"nmap <Plug>quotableSurroundDouble <c-r>=quotable#surround(1, '')<cr>
+"vmap <Plug>quotableSurroundDouble <c-r>=quotable#surround(1, 'visual')<cr>
+
+"nmap <Plug>quotableSurroundDouble :echo "aaaa"<cr>
+"vmap <Plug>quotableSurroundDouble :echo "bbbb"<cr>
+"nmap <Plug>quotableSurroundDouble :call quotable#surround(1, '')<cr>
+"vmap <Plug>quotableSurroundDouble :call quotable#surround(1, 'visual')<cr>
+"nnoremap <silent> <Plug>quotableSurroundDouble :call quotable#surround(1, '')<cr>
+"vnoremap <silent> <Plug>quotableSurroundDouble :call quotable#surround(1, 'visual')<cr>
+"nnoremap <silent> <Plug>quotableSurroundSingle :call quotable#surround(0, '')<cr>
+"vnoremap <silent> <Plug>quotableSurroundSingle :call quotable#surround(0, 'visual')<cr>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
