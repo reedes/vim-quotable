@@ -41,16 +41,10 @@ function! quotable#stuff(visual)
   endif
 endfunction
 
-" worked
-"nnoremap <silent> <Plug>quotableSurroundSingle ciw‘<C-r>"’<Esc>
-"vnoremap <silent> <Plug>quotableSurroundSingle c‘<C-r>"’ <Esc>
-"nnoremap <silent> <Plug>quotableSurroundDouble ciw“<C-r>"”<Esc>
-"vnoremap <silent> <Plug>quotableSurroundDouble c“<C-r>"” <Esc>
-
 function! quotable#surround(mode, visual)
-  " mode=1 is double; mode=0 is single
-  " wrap word/selection in curly quotes
   " A simple alternative to Tim Pope's vim-surround
+  " wrap word/selection in curly quotes
+  " mode=1 is double; mode=0 is single
   if !exists('b:quotable_dl') | return | endif
   if a:mode
     let l:l = b:quotable_dl
@@ -97,7 +91,7 @@ function! quotable#initialize(...)
   endif
 
   " q/Q support for tpope/vim-surround
-  " TODO support other letters
+  " TODO support letters other than q/Q
   let b:surround_113 = b:quotable_dl . "\r" . b:quotable_dr
   let b:surround_81  = b:quotable_sl . "\r" . b:quotable_sr
 

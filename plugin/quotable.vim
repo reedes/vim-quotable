@@ -18,6 +18,9 @@ let g:loaded_quotable = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+let g:quotable#doubleStandard = '“”'
+let g:quotable#singleStandard = '‘’'
+
 if !exists('g:quotable#doubleMotion')
   let g:quotable#doubleMotion = 'q'
 endif
@@ -27,11 +30,11 @@ endif
 
 if !exists('g:quotable#doubleDefault')
   "  “double”
-  let g:quotable#doubleDefault = '“”'
+  let g:quotable#doubleDefault = g:quotable#doubleStandard
 endif
 if !exists('g:quotable#singleDefault')
   "  ‘single’
-  let g:quotable#singleDefault = '‘’'
+  let g:quotable#singleDefault = g:quotable#singleStandard
 endif
 
 if !exists('g:quotable#educateQuotes')
