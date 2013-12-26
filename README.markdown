@@ -1,18 +1,19 @@
-`vim-quotable`
+# `vim-quotable`
 
-`“Extending Vim to better support ‘typographic’ quote characters.” —Me`
+> “Extending Vim to better support ‘typographic’ quote characters.” —Me
 
 While Vim is renown for its text editing capabilities, it nevertheless retains
-a bias towards ASCII that stretches back to its roots. This can limit its
-appeal for those who prefer typographic characters like “curly quotes” over
-"straight quotes" in the prose or documentation they write.
+a bias towards ASCII that stretches back to its vi roots on Unix. This can
+limit the appeal of this powerful editor for those who prefer typographic
+characters like “curly quotes” over "straight quotes" in the prose or
+documentation they write.
 
 Features of this plugin:
 
 * Automatic entry of ‘typographic quotes’ from the 'straight quote' keys
 * Motion support for typographic quote pairs
 * Matchit `%` matching for typographic quote pairs
-* Define alternative typographic quote pairs
+* User can define alternative typographic quote pairs
 * Support for the `tpope/vim-surround` plugin
 
 ## Requirements
@@ -27,10 +28,10 @@ Install using Pathogen, Vundle, Neobundle, or your favorite Vim package
 manager.
 
 To support typographic characters as text objects, the following dependency
-must be installed. (Strongly recommended.)
+should be installed. (Strongly recommended.)
 
   ```
-  [textobject-user][] - create your own text objects without pain 
+  [textobject-user][] - create your own text objects without pain
   ```
 
 [textobject-user]: https://github.com/kana/vim-textobj-user
@@ -40,7 +41,7 @@ must be installed. (Strongly recommended.)
 ### File type support
 
 Because you won't want typographic quotes in your code, the behavior of this
-plugin can be configured per file type. For example, to enable typographic 
+plugin can be configured per file type. For example, to enable typographic
 quote support in `markdown` and `textile` files, place in your `.vimrc`:
 
 ```vim
@@ -48,18 +49,12 @@ augroup quotable
   autocmd!
   autocmd FileType markdown call quotable#init()
   autocmd FileType textile call quotable#init()
-augroup END
-```
-
-You can configure the ‘educating’ feature (more below) to be disabled by
-default, such as:
-
-```vim
-augroup quotable
-  autocmd!
   autocmd FileType python call quotable#init({ 'educate': 0 })
 augroup END
 ```
+
+The last statement installs plugin for buffers of ‘python’ file type, but
+disables the ‘educating’ feature by default. More on that below.
 
 ### International support
 
@@ -134,7 +129,7 @@ You can set the educating behavior with the following Ex commands
   ```
   QuotableEducateOn
   QuotableEducateOff
-  QuotableEducateToggle 
+  QuotableEducateToggle
   ```
 
 Or better yet, map to keys:
@@ -236,7 +231,8 @@ For example, to enter left double quotation mark (“), precede the digraph code
   «Ctrl-K»"6
   ```
 
-Alternatively, if you’re on OS X, you can enter Opt-`[` to enter this character.
+Alternatively, if you’re on OS X, you can enter Opt-`[` to enter this
+character.
 
 For more details, see:
 
@@ -247,9 +243,10 @@ For more details, see:
 
 This plugin can benefit from additional work.
 
-* Better support for motion.
-* Commands for converting text between typographic and typewriter characters.
-* Right to left support.
+* Vim doc file
+* Better support for motion
+* Commands for converting text between typographic and typewriter characters
+* Right to left support
 
 If you have any ideas on improving this plugin, please post them to the github project issue page.
 

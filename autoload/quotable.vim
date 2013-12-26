@@ -41,8 +41,8 @@ function! quotable#mapKeysToEducate(...)
     inoremap <buffer> " <C-R>=<SID>educateQuotes(1)<CR>
     inoremap <buffer> ' <C-R>=<SID>educateQuotes(0)<CR>
   else
-    iunmap <buffer> "
-    iunmap <buffer> '
+    silent! iunmap <buffer> "
+    silent! iunmap <buffer> '
   endif
 endfunction
 
