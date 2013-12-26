@@ -1,4 +1,4 @@
-# `vim-quotable`
+# vim-quotable
 
 > “Extending Vim to better support ‘typographic’ quote characters.” —Me
 
@@ -30,7 +30,7 @@ manager.
 To support typographic characters as text objects, the following dependency
 should be installed. (Strongly recommended.)
 
-  [textobject-user](https://github.com/kana/vim-textobj-user)
+* [textobject-user](https://github.com/kana/vim-textobj-user) - a Vim plugin to create your own text objects without pain
 
 ## Configuration
 
