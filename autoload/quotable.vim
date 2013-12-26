@@ -30,6 +30,30 @@ function! s:educateQuotes(mode)
         \ : l:r
 endfunction
 
+function! quotable#mapKeysToEducate(...)
+  " Un/Map keys to un/educate quotes for current buffer
+  if a:0
+    let b:quotable_educate = a:1
+  elseif !exists('b:quotable_educate')
+    let b:quotable_educate = g:quotable#educateQuotesDefault
+  endif
+  if b:quotable_educate
+    inoremap <buffer> " <C-R>=<SID>educateQuotes(1)<CR>
+    inoremap <buffer> ' <C-R>=<SID>educateQuotes(0)<CR>
+  else
+    iunmap <buffer> "
+    iunmap <buffer> '
+  endif
+endfunction
+
+function! quotable#educateToggle()
+  " Toggle educate behavior for current buffer
+  let l:educate = !exists('b:quotable_educate')
+            \ ? 1
+            \ : !b:quotable_educate
+  call quotable#mapKeysToEducate(l:educate)
+endfunction
+
 function! quotable#surround(mode, visual)
   " A simple alternative to Tim Pope's vim-surround
   " wrap word/selection in curly quotes
@@ -52,22 +76,22 @@ endfunction
 
 " set up mappings for current buffer only
 " initialize buffer-scoped variables
+" args: { 'double':'“”', 'single':'‘’', 'educate':1 }
 function! quotable#init(...)
   if !s:unicode_enabled() | return | endif
 
-  " obtain the quote pairs, from args or defaults
-  let l:d_arg = a:0 > 0 ? split(a:1, '\zs') : []
-  let l:s_arg = a:0 > 1 ? split(a:2, '\zs') : []
-  let l:d_m = len(l:d_arg) == 2
-  let l:s_m = len(l:s_arg) == 2
-  let l:d_def = split(g:quotable#doubleDefault, '\zs')
-  let l:s_def = split(g:quotable#singleDefault, '\zs')
-  let l:d_n = len(l:d_def) == 2
-  let l:s_n = len(l:s_def) == 2
-  let b:quotable_dl = l:d_m ? l:d_arg[0] : (l:d_n ? l:d_def[0] : '“')
-  let b:quotable_dr = l:d_m ? l:d_arg[1] : (l:d_n ? l:d_def[1] : '”')
-  let b:quotable_sl = l:s_m ? l:s_arg[0] : (l:s_n ? l:s_def[0] : '‘')
-  let b:quotable_sr = l:s_m ? l:s_arg[1] : (l:s_n ? l:s_def[1] : '’')
+  let l:args = a:0 > 0 ? a:1 : {}
+  let l:double_pair = get(l:args, 'double', g:quotable#doubleDefault)
+  let l:single_pair = get(l:args, 'single', g:quotable#singleDefault)
+  let l:educate     = get(l:args, 'educate', g:quotable#educateQuotesDefault)
+
+  " obtain the individual quote characters
+  let l:d_arg = split(l:double_pair, '\zs')
+  let l:s_arg = split(l:single_pair, '\zs')
+  let b:quotable_dl = l:d_arg[0]
+  let b:quotable_dr = l:d_arg[1]
+  let b:quotable_sl = l:s_arg[0]
+  let b:quotable_sr = l:s_arg[1]
 
   " support '%' navigation of quotable pairs
   if exists("b:match_words")
@@ -98,8 +122,5 @@ function! quotable#init(...)
   \      },
   \})
 
-  if g:quotable#educateQuotes
-    inoremap <buffer> " <C-R>=<SID>educateQuotes(1)<CR>
-    inoremap <buffer> ' <C-R>=<SID>educateQuotes(0)<CR>
-  endif
+  call quotable#mapKeysToEducate(l:educate)
 endfunction

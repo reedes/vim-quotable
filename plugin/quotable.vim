@@ -37,21 +37,26 @@ if !exists('g:quotable#singleDefault')
   let g:quotable#singleDefault = g:quotable#singleStandard
 endif
 
-if !exists('g:quotable#educateQuotes')
-  " translate "straight quotes" to “typographical quotes”
-  let g:quotable#educateQuotes = 1
+if !exists('g:quotable#educateQuotesDefault')
+  " by default, translate "straight quotes" to “typographical quotes”
+  let g:quotable#educateQuotesDefault = 1
 endif
 
-" needed for smart quote support (via tpope/vim-sensible)
+" needed to match pairs of quotes (via tpope/vim-sensible)
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
+" commands
+command -nargs=0 QuotableEducateOn  call quotable#mapKeysToEducate(1)<cr>
+command -nargs=0 QuotableEducateOff  call quotable#mapKeysToEducate(0)<cr>
+command -nargs=0 QuotableEducateToggle  call quotable#educateToggle()<cr>
+
 " a simple alterative to tpope/vim-surround
-nmap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
-vmap <Plug>QuotableSurroundDouble :<C-u>call quotable#surround(1, visualmode())<cr>
-nmap <Plug>QuotableSurroundSingle :call quotable#surround(0, '')<cr>
-vmap <Plug>QuotableSurroundSingle :<C-u>call quotable#surround(0, visualmode())<cr>
+nnoremap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
+vnoremap <Plug>QuotableSurroundDouble :<C-u>call quotable#surround(1, visualmode())<cr>
+nnoremap <Plug>QuotableSurroundSingle :call quotable#surround(0, '')<cr>
+vnoremap <Plug>QuotableSurroundSingle :<C-u>call quotable#surround(0, visualmode())<cr>
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
