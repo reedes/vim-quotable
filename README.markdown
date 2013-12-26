@@ -83,12 +83,12 @@ as:
 To avoid expansion and insert a "straight" quote character, precede key with
 `«Ctrl-V»`:
 
-  `«Ctrl-V»"` - straight double quote
-  `«Ctrl-V»'` - straight single quote
+* `«Ctrl-V»"` - straight double quote
+* `«Ctrl-V»'` - straight single quote
 
 You can set the educating behavior with the following Ex commands
 
-  ```
+  ```vim
   QuotableEducateOn
   QuotableEducateOff
   QuotableEducateToggle
@@ -109,10 +109,10 @@ Motion commands are a powerful feature of Vim.
 By default, for motion commands, `q` denotes “double” quotes and `Q` denotes
 ‘single’ quotes.
 
-`ciq` - [Change Inside “double” quotes] - excludes quote chars
-`ciQ` - [Change Inside ‘single’ quotes] - excludes quote chars
-`caq` - [Change Around “double” quotes] - includes quote chars
-`caQ` - [Change Around ‘single’ quotes] - includes quote chars
+* `ciq` - [Change Inside “double” quotes] - excludes quote chars
+* `ciQ` - [Change Inside ‘single’ quotes] - excludes quote chars
+* `caq` - [Change Around “double” quotes] - includes quote chars
+* `caQ` - [Change Around ‘single’ quotes] - includes quote chars
 
 Apart from `c` for change, you can `v` for visual selection, `d` for deletion,
 `y` for yanking to clipboard, etc.
@@ -129,7 +129,7 @@ to your `.vimrc`, changing the motion characters as you desire:
 
 Matchit enables jumping to matching quotes.
 
-  `%` - jump to the matching typographical quote character
+* `%` - jump to the matching typographical quote character
 
 ### Surround support
 
