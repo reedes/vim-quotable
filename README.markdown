@@ -30,11 +30,7 @@ manager.
 To support typographic characters as text objects, the following dependency
 should be installed. (Strongly recommended.)
 
-  ```
-  [textobject-user][] - create your own text objects without pain
-  ```
-
-[textobject-user]: https://github.com/kana/vim-textobj-user
+  [textobject-user](https://github.com/kana/vim-textobj-user)
 
 ## Configuration
 
