@@ -2,9 +2,9 @@
 
 > “Extending Vim to better support ‘typographic’ quote characters.” —Me
 
-While Vim is renown for its text editing capabilities, it nevertheless retains
-a bias towards ASCII that stretches back to its vi roots on Unix. This can
-limit the appeal of this powerful editor for those who prefer typographic
+While Vim is renown for its text manipulation capabilities, it nevertheless
+retains a bias towards ASCII that stretches back to its vi roots on Unix. This
+can limit the appeal of this powerful editor for those who prefer typographic
 characters like “curly quotes” over "straight quotes" in the prose or
 documentation they write.
 
@@ -38,55 +38,21 @@ should be installed. (Strongly recommended.)
 
 ## Configuration
 
-### File type support
-
 Because you won't want typographic quotes in your code, the behavior of this
 plugin can be configured per file type. For example, to enable typographic
 quote support in `markdown` and `textile` files, place in your `.vimrc`:
 
-```vim
-augroup quotable
-  autocmd!
-  autocmd FileType markdown call quotable#init()
-  autocmd FileType textile call quotable#init()
-  autocmd FileType python call quotable#init({ 'educate': 0 })
-augroup END
-```
+  ```vim
+  augroup quotable
+    autocmd!
+    autocmd FileType markdown call quotable#init()
+    autocmd FileType textile call quotable#init()
+    autocmd FileType python call quotable#init({ 'educate': 0 })
+  augroup END
+  ```
 
-The last statement installs plugin for buffers of ‘python’ file type, but
+The last statement installs this plugin for buffers of ‘python’ file type, but
 disables the ‘educating’ feature by default. More on that below.
-
-### International support
-
-Many international keyboards feature keys to allow you to input the desired
-typographic quote directly. In such a case, you won’t need to change the
-behavior of the straight quote keys.
-
-But if you do, a standard convention is used by default:
-
-```vim
-let g:quotable#doubleDefault = '“”'     " “double”
-let g:quotable#singleDefault = '‘’'     " ‘single’
-```
-
-Those users editing all of their prose in German may want to change their
-defaults to:
-
-```vim
-let g:quotable#doubleDefault = '„“'     " „doppel“
-let g:quotable#singleDefault = '‚‘'     " ‚einzel‘
-```
-
-Users who desire maximum control can switch between quote pairings within
-a single buffer:
-
-```vim
-nmap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
-nmap <silent> <leader>qs :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
-nmap <silent> <leader>qg :call quotable#init({ 'double':'„“', 'single':'‚‘' })<cr>
-nmap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
-nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
-```
 
 ## Usage
 
@@ -134,11 +100,11 @@ You can set the educating behavior with the following Ex commands
 
 Or better yet, map to keys:
 
-```
-nmap <silent> <leader>q1 :QuotableEducateOn<cr>
-nmap <silent> <leader>q0 :QuotableEducateOff<cr>
-nmap <silent> <leader>qq :QuotableEducateToggle<cr>
-```
+  ```vim
+  nmap <silent> <leader>q1 :QuotableEducateOn<cr>
+  nmap <silent> <leader>q0 :QuotableEducateOff<cr>
+  nmap <silent> <leader>qq :QuotableEducateToggle<cr>
+  ```
 
 ### Motion commands
 
@@ -173,11 +139,11 @@ Matchit enables jumping to matching quotes.
 
 This plugin supports basic surround capabilities. Add to your `.vimrc`:
 
-```vim
-" NOTE: be sure to remove these mappings if using the tpope/vim-surround plugin!
-map <silent> Sq <Plug>QuotableSurroundDouble
-map <silent> SQ <Plug>QuotableSurroundSingle
-```
+  ```vim
+  " NOTE: be sure to remove these mappings if using the tpope/vim-surround plugin!
+  map <silent> Sq <Plug>QuotableSurroundDouble
+  map <silent> SQ <Plug>QuotableSurroundSingle
+  ```
 
 Then you can use motion commands to surround your text with quotes:
 
@@ -238,13 +204,45 @@ For more details, see:
 
   `:help digraphs`
 
+## International support
+
+Many international keyboards feature keys to allow you to input the desired
+typographic quote directly. In such cases, you won’t need to change the
+behavior of the straight quote keys.
+
+But if you do, a standard convention is used by default:
+
+  ```vim
+  let g:quotable#doubleDefault = '“”'     " “double”
+  let g:quotable#singleDefault = '‘’'     " ‘single’
+  ```
+
+Those users editing all of their prose in German may want to change their
+defaults to:
+
+  ```vim
+  let g:quotable#doubleDefault = '„“'     " „doppel“
+  let g:quotable#singleDefault = '‚‘'     " ‚einzel‘
+  ```
+
+International users who desire maximum control can switch between quote
+pairings within a single buffer:
+
+  ```vim
+  nmap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
+  nmap <silent> <leader>qs :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
+  nmap <silent> <leader>qg :call quotable#init({ 'double':'„“', 'single':'‚‘' })<cr>
+  nmap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
+  nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
+  ```
 
 ## Future development
 
-This plugin can benefit from additional work.
+This plugin can benefit from additional work. Perhaps you can help?
 
 * Vim doc file
 * Better support for motion
+* Better support for vim-surround
 * Commands for converting text between typographic and typewriter characters
 * Right to left support
 
