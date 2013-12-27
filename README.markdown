@@ -183,8 +183,8 @@ or via your operating system’s keyboard shortcuts.
 | `ï`   | `i:`        | `Opt-U` `i`        | lowercase i, umlaut
 | `æ`   | `ae`        | `Opt-'`            | lowercase ae
 
-For example, to enter left double quotation mark (“), precede the digraph code
-("6) with Ctrl-K, like
+For example, to enter left double quotation mark `“`, precede the digraph code
+`"6` with `Ctrl-K`, like
 
  * `«Ctrl-K»"6`
 
@@ -217,7 +217,8 @@ defaults to:
   ```
 
 International users who desire maximum control can switch between quote
-pairings within a single buffer, adding to their `.vimrc`:
+pairings within a single buffer, adding the following key mappings to 
+their `.vimrc`:
 
   ```vim
   nmap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
