@@ -117,7 +117,7 @@ function! quotable#init(...)
   let b:surround_81  = b:quotable_sl . "\r" . b:quotable_sr
 
   " add text object support
-  if exists("*textobj#user#plugin")
+  try
     call textobj#user#plugin('quotable', {
     \      'double-quotation-mark': {
     \         '*pattern*': [ b:quotable_dl, b:quotable_dr ],
@@ -130,7 +130,9 @@ function! quotable#init(...)
     \         'select-i': 'i' . g:quotable#singleMotion,
     \      },
     \})
-  endif
+  catch /E117/
+    " plugin likely not installed; fail silently
+  endtry
 
   call quotable#mapKeysToEducate(l:educate)
 endfunction
