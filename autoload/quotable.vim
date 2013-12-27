@@ -33,7 +33,7 @@ function! s:educateQuotes(mode)
   let left = leading_char_count > 0
         \ ? leading_chars[ leading_char_count - 1 ]
         \ : ''
-  return left =~# '^\(\|\s\|{\|(\|\[\|&\|—\|—\|-\)$' || left ==# l:al
+  return left =~# '^\(\|\s\|{\|(\|\[\|&\)$' || left ==# l:al
         \ ? l:l
         \ : l:r
 endfunction
