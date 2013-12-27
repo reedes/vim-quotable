@@ -45,9 +45,9 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " commands
-command -nargs=0 QuotableEducateOn  call quotable#mapKeysToEducate(1)<cr>
-command -nargs=0 QuotableEducateOff  call quotable#mapKeysToEducate(0)<cr>
-command -nargs=0 QuotableEducateToggle  call quotable#educateToggle()<cr>
+command -nargs=0 QuotableEducateOn call quotable#mapKeysToEducate(1)
+command -nargs=0 QuotableEducateOff call quotable#mapKeysToEducate(0)
+command -nargs=0 QuotableEducateToggle call quotable#educateToggle()
 
 " a simple alterative to tpope/vim-surround
 nnoremap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
