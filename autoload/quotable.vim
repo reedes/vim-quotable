@@ -117,18 +117,20 @@ function! quotable#init(...)
   let b:surround_81  = b:quotable_sl . "\r" . b:quotable_sr
 
   " add text object support
-  call textobj#user#plugin('quotable', {
-  \      'double-quotation-mark': {
-  \         '*pattern*': [ b:quotable_dl, b:quotable_dr ],
-  \         'select-a': 'a' . g:quotable#doubleMotion,
-  \         'select-i': 'i' . g:quotable#doubleMotion,
-  \      },
-  \      'single-quotation-mark': {
-  \         '*pattern*': [ b:quotable_sl, b:quotable_sr ],
-  \         'select-a': 'a' . g:quotable#singleMotion,
-  \         'select-i': 'i' . g:quotable#singleMotion,
-  \      },
-  \})
+  if exists("*textobj#user#plugin")
+    call textobj#user#plugin('quotable', {
+    \      'double-quotation-mark': {
+    \         '*pattern*': [ b:quotable_dl, b:quotable_dr ],
+    \         'select-a': 'a' . g:quotable#doubleMotion,
+    \         'select-i': 'i' . g:quotable#doubleMotion,
+    \      },
+    \      'single-quotation-mark': {
+    \         '*pattern*': [ b:quotable_sl, b:quotable_sr ],
+    \         'select-a': 'a' . g:quotable#singleMotion,
+    \         'select-i': 'i' . g:quotable#singleMotion,
+    \      },
+    \})
+  endif
 
   call quotable#mapKeysToEducate(l:educate)
 endfunction
