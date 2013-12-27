@@ -1,6 +1,6 @@
 # vim-quotable
 
-> “Extending Vim to better support ‘typographic’ (curly) quote characters.”
+> “Extending Vim to better support typographic (‘curly’) quote characters.”
 
 ![demo](screenshots/demo.gif)
 
