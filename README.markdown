@@ -2,6 +2,8 @@
 
 > “Extending Vim to better support ‘typographic’ (curly) quote characters.”
 
+![demo](screenshots/demo.gif)
+
 While Vim is renown for its text manipulation capabilities, it nevertheless
 retains a bias towards ASCII that stretches back to its vi roots on Unix. This
 can limit Vim’s appeal for those who prefer typographic characters like “curly
