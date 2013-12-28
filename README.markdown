@@ -7,7 +7,7 @@
 While Vim is renown for its text manipulation capabilities, it nevertheless
 retains a bias towards ASCII that stretches back to its vi roots on Unix. This
 can limit Vim’s appeal for those who prefer typographic characters like “curly
-quote” over "straight quotes" in the prose or documentation they write.
+quote” over ASCII "straight quotes" in the prose or documentation they write.
 
 Features of this plugin:
 
@@ -61,7 +61,7 @@ For example, entering the following sentence without this plugin using the
 straight quote keys:
 
   ```
-  "It's Dr. Evil, I didn't spend six years in Evil Medical School to be called 'mister,' 
+  "It's Dr. Evil. I didn't spend six years in Evil Medical School to be called 'mister,'
   thank you very much."
   ```
 
@@ -70,7 +70,7 @@ straight quotes are transformed into the appropriate typographical equivalent
 as you type:
 
   ```
-  “It’s Dr. Evil, I didn’t spend six years in Evil Medical School to be called ‘mister,’ 
+  “It’s Dr. Evil. I didn’t spend six years in Evil Medical School to be called ‘mister,’
   thank you very much.”
   ```
 
@@ -92,7 +92,7 @@ Note that for units of measurement you’ll want to use the prime symbol rather
 than straight quotes, as in:
 
   ```
-  Standing at 7′3″ (2.21 m), Hasheem Thabeet of the Oklahoma City Thunder is the tallest 
+  Standing at 7′3″ (2.21 m), Hasheem Thabeet of the Oklahoma City Thunder is the tallest
   player in the NBA.
   ```
 
@@ -213,8 +213,8 @@ or via your operating system’s keyboard shortcuts.
 | `›`   | `1>`        | `Shift-Opt-\`      | right pointing single quotation mark
 | `«`   | `<<`        | `Opt-\`            | left pointing double quotation mark
 | `»`   | `>>`        | `Shift-Opt-\`      | right pointing double quotation mark
-| `′`   | `1'`        |                    | single prime  
-| `″`   | `2'`        |                    | double prime  
+| `′`   | `1'`        |                    | single prime
+| `″`   | `2'`        |                    | double prime
 | `–`   | `-N`        | `Opt-hyphen`       | en dash
 | `—`   | `-M`        | `Shift-Opt-hyphen` | em dash
 | `…`   | `..`        | `Opt-;`            | horizontal ellipsis
@@ -256,7 +256,7 @@ defaults to:
   ```
 
 International users who desire maximum control can switch between quote
-pairings within a single buffer, adding the following key mappings to 
+pairings within a single buffer, adding the following key mappings to
 their `.vimrc`:
 
   ```vim
