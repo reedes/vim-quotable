@@ -51,45 +51,47 @@ quote support in `markdown` and `textile` files, place in your `.vimrc`:
 The last statement installs this plugin for buffers of `python` file type, but
 disables the ‘educate’ feature by default. More on that below.
 
-## Usage
-
-### Educating straight quotes
+## Educating straight quotes
 
 This plugin will ‘educate’ quotes, meaning that it will dynamically transform
-your straight quote key presses (`"` or `'`) into corresponding typographical
-quote characters.
+straight quote key presses (`"` or `'`) into corresponding typographical quote
+characters.
 
 For example, entering the following sentence without this plugin using the
-straight quote keys looks like this:
+straight quote keys:
 
   ```
-  "It's Dr. Evil, I didn't spend six years in Evil Medical School to be
-  called 'mister,' thank you very much."
+  "It's Dr. Evil, I didn't spend six years in Evil Medical School to be called 'mister,' 
+  thank you very much."
   ```
 
 As expected all the quotes are straight ones. But with this plugin, the
-straight quotes you enter are transformed into the appropriate typographical
-equivalent as you type:
+straight quotes are transformed into the appropriate typographical equivalent
+as you type:
 
   ```
-  “It’s Dr. Evil, I didn’t spend six years in Evil Medical School to be 
-  called ‘mister,’ thank you very much.”
+  “It’s Dr. Evil, I didn’t spend six years in Evil Medical School to be called ‘mister,’ 
+  thank you very much.”
   ```
 
-However, in some cases you will want to enter a straight quote, such
-as:
+### Entering straight quotes
+
+However, in some cases straight quotes are desired, such as:
 
   ```
   “What kind of music does this ‘9" Nails’ perform?” asked Joe.
   ```
 
-To avoid transform and insert a "straight" quote character instead, precede key
-with `«Ctrl-V»`:
+To avoid transform and insert a "straight" quote character instead, enter
+`«Ctrl-V»` before quote key:
 
 * `«Ctrl-V»"` - straight double quote
 * `«Ctrl-V»'` - straight single quote
 
-You can set the educating behavior with the following Ex commands:
+### Commands
+
+You can enable (or toggle) the educating behavior with the following Ex
+commands:
 
   ```vim
   QuotableEducateOn
@@ -106,8 +108,10 @@ map to keys by adding to your `.vimrc`:
   nmap <silent> <leader>qq :QuotableEducateToggle<cr>
   ```
 
-The educate quotes feature has three operating levels: ‘off’(0), ‘smart’(1) and
-‘smarter’(2, the default) which you can configure with a global variable in
+### Educate levels
+
+The educate quotes feature has three levels of functionality: ‘off’(0),
+‘smart’(1) and ‘smarter’(2) which can be configured with a global variable in
 your `.vimrc`:
 
   ```vim
@@ -120,14 +124,14 @@ for the quote keys. Not even `QuotableEducateOn` can override this setting.
 The ‘smart’(1) level provides basic support for typographical quotes, providing
 no-frills behavior.
 
-More advanced is the ‘smarter’(2) mode that provides context. If you’re at the
-end of a line (or prior to whitespace) a matching pair of quotes (`“”` or `‘’`)
-will be inserted together rather than a single opening quote. The closing quote
-will be then be pushed ahead of your inserted text. You can step through the
-closing quote by hitting the corresponding quote key (`"` or `'`) where there
-is no need to exit Insert mode or use arrow keys.
+More advanced is the ‘smarter’(2) mode that provides context as you type. If
+you’re at the end of a line (or prior to whitespace) a matching pair of quotes
+(`“”` or `‘’`) will be inserted together rather than a single opening quote.
+The closing quote(s) will be then be pushed ahead of your inserted text. You
+can step through the closing quote by hitting the corresponding quote key (`"`
+or `'`) where there is no need to exit Insert mode or use arrow keys.
 
-### Motion commands
+## Motion commands
 
 Motion commands are a powerful feature of Vim.
 
@@ -150,13 +154,13 @@ to your `.vimrc`, changing the motion characters as you desire:
   let g:quotable#singleMotion = 'Q'
   ```
 
-### Matchit support
+## Matchit support
 
 Matchit enables jumping to matching quotes.
 
 * `%` - jump to the matching typographical quote character
 
-### Surround support
+## Surround support
 
 This plugin supports basic surround capabilities. Add to your `.vimrc`:
 
@@ -183,7 +187,7 @@ have replace abilities on pairs of characters:
 
 [vim-surround]: https://github.com/tpope/vim-surround
 
-### Entering special characters
+## Entering special characters
 
 Sometimes you must enter special characters (like typographical quotes)
 manually, such as in a search expression. You can do so through Vim’s digraphs
@@ -211,7 +215,7 @@ or via your operating system’s keyboard shortcuts.
 For example, to enter left double quotation mark `“`, precede the digraph code
 `"6` with `Ctrl-K`, like
 
- * `«Ctrl-K»"6`
+* `«Ctrl-K»"6`
 
 Alternatively, if you’re on OS X, you can enter `Opt-[` to enter this
 character.
