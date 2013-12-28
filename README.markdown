@@ -7,7 +7,7 @@
 While Vim is renown for its text manipulation capabilities, it nevertheless
 retains a bias towards ASCII that stretches back to its vi roots on Unix. This
 can limit Vim’s appeal for those who prefer typographic characters like “curly
-quotes” over "straight quotes" in the prose or documentation they write.
+quote” over "straight quotes" in the prose or documentation they write.
 
 Features of this plugin:
 
@@ -63,7 +63,8 @@ For example, entering the following sentence without this plugin using the
 straight quote keys looks like this:
 
   ```
-  "I'm still infected," cautioned O'Malley.
+  "It's Dr. Evil, I didn't spend six years in Evil Medical School to be
+  called 'mister,' thank you very much."
   ```
 
 As expected all the quotes are straight ones. But with this plugin, the
@@ -71,23 +72,24 @@ straight quotes you enter are transformed into the appropriate typographical
 equivalent as you type:
 
   ```
-  “I’m still infected,” cautioned O’Malley.
+  “It’s Dr. Evil, I didn’t spend six years in Evil Medical School to be 
+  called ‘mister,’ thank you very much.”
   ```
 
 However, in some cases you will want to enter a straight quote, such
 as:
 
   ```
-  “It snowed 12" overnight,” said Bob, who loathes the metric system.
+  “What kind of music does this ‘9" Nails’ perform?” asked Joe.
   ```
 
-To avoid expansion and insert a "straight" quote character, precede key with
-`«Ctrl-V»`:
+To avoid transform and insert a "straight" quote character instead, precede key
+with `«Ctrl-V»`:
 
 * `«Ctrl-V»"` - straight double quote
 * `«Ctrl-V»'` - straight single quote
 
-You can set the educating behavior with the following Ex commands
+You can set the educating behavior with the following Ex commands:
 
   ```vim
   QuotableEducateOn
@@ -95,13 +97,35 @@ You can set the educating behavior with the following Ex commands
   QuotableEducateToggle
   ```
 
-Or better yet, map to keys by adding to your `.vimrc`:
+`QuotableEducateOn` will map the quote keys for transformation. Or better yet,
+map to keys by adding to your `.vimrc`:
 
   ```vim
   nmap <silent> <leader>q1 :QuotableEducateOn<cr>
   nmap <silent> <leader>q0 :QuotableEducateOff<cr>
   nmap <silent> <leader>qq :QuotableEducateToggle<cr>
   ```
+
+The educate quotes feature has three operating levels: ‘off’(0), ‘smart’(1) and
+‘smarter’(2, the default) which you can configure with a global variable in
+your `.vimrc`:
+
+  ```vim
+  let g:quotable#educateLevel = 2
+  ```
+
+The ‘off’(0) level disables the feature and retains the straight quote behavior
+for the quote keys. Not even `QuotableEducateOn` can override this setting.
+
+The ‘smart’(1) level provides basic support for typographical quotes, providing
+no-frills behavior.
+
+More advanced is the ‘smarter’(2) mode that provides context. If you’re at the
+end of a line (or prior to whitespace) a matching pair of quotes (`“”` or `‘’`)
+will be inserted together rather than a single opening quote. The closing quote
+will be then be pushed ahead of your inserted text. You can step through the
+closing quote by hitting the corresponding quote key (`"` or `'`) where there
+is no need to exit Insert mode or use arrow keys.
 
 ### Motion commands
 
@@ -161,7 +185,7 @@ have replace abilities on pairs of characters:
 
 ### Entering special characters
 
-Sometimes you will have to enter special characters (like typographical quotes)
+Sometimes you must enter special characters (like typographical quotes)
 manually, such as in a search expression. You can do so through Vim’s digraphs
 or via your operating system’s keyboard shortcuts.
 
@@ -180,6 +204,7 @@ or via your operating system’s keyboard shortcuts.
 | `–`   | `-N`        | `Opt-hyphen`       | en dash
 | `—`   | `-M`        | `Shift-Opt-hyphen` | em dash
 | `…`   | `..`        | `Opt-;`            | horizontal ellipsis
+| ` `   | `NS`        |                    | non-breaking space
 | `ï`   | `i:`        | `Opt-U` `i`        | lowercase i, umlaut
 | `æ`   | `ae`        | `Opt-'`            | lowercase ae
 

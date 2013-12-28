@@ -34,9 +34,11 @@ if !exists('g:quotable#singleDefault')
   let g:quotable#singleDefault = g:quotable#singleStandard
 endif
 
-if !exists('g:quotable#educateQuotesDefault')
-  " by default, translate "straight quotes" to “typographical quotes”
-  let g:quotable#educateQuotesDefault = 1
+if !exists('g:quotable#educateLevel')
+  " 0: off
+  " 1: smart - basic
+  " 2: smarter - advanced
+  let g:quotable#educateLevel = 2
 endif
 
 " needed to match pairs of quotes (via tpope/vim-sensible)
@@ -44,10 +46,10 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim
 endif
 
-" commands
+" commands to toggle key mappings
 command -nargs=0 QuotableEducateOn call quotable#mapKeysToEducate(1)
 command -nargs=0 QuotableEducateOff call quotable#mapKeysToEducate(0)
-command -nargs=0 QuotableEducateToggle call quotable#educateToggle()
+command -nargs=0 QuotableEducateToggle call quotable#educateToggleMappings()
 
 " a simple alterative to tpope/vim-surround
 nnoremap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
