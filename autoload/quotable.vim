@@ -16,9 +16,8 @@ let autoloaded_quotable = 1
 " TODO support these constants
 "let s:KEY_MODE_DOUBLE = 1
 "let s:KEY_MODE_SINGLE = 0
-"let s:LEVEL_OFF     = 0
-"let s:LEVEL_SMART   = 1
-"let s:LEVEL_SMARTER = 2
+"let s:LEVEL_BASIC     = 1
+"let s:LEVEL_ADVANCED  = 2
 
 function! s:unicode_enabled()
   return &encoding == 'utf-8'
@@ -89,9 +88,7 @@ endfunction
 
 function! quotable#mapKeysToEducate(...)
   " Un/Map keys to un/educate quotes for current buffer
-  if g:quotable#educateLevel == 0
-    let b:quotable_educate_mapped = 0
-  elseif a:0
+  if a:0
     let b:quotable_educate_mapped = !!a:1
   else
     let b:quotable_educate_mapped = 1
@@ -144,7 +141,7 @@ function! quotable#init(...)
   let l:args = a:0 > 0 ? a:1 : {}
   let l:double_pair = get(l:args, 'double', g:quotable#doubleDefault)
   let l:single_pair = get(l:args, 'single', g:quotable#singleDefault)
-  let l:educate     = get(l:args, 'educate', (g:quotable#educateLevel > 0))
+  let l:educate     = get(l:args, 'educate', 1)
 
   " obtain the individual quote characters
   let l:d_arg = split(l:double_pair, '\zs')
