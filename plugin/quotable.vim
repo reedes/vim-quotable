@@ -35,7 +35,6 @@ if !exists('g:quotable#singleDefault')
 endif
 
 if !exists('g:quotable#educateLevel')
-  " 0: off
   " 1: basic
   " 2: advanced
   let g:quotable#educateLevel = 1
