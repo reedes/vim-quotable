@@ -79,7 +79,7 @@ as you type:
 However, in some cases straight quotes are desired, such as:
 
   ```
-  “What kind of music does this ‘9" Nails’ perform?” asked Joe.
+  “print "Hello World!"” is a simple program you can write in Python.
   ```
 
 To avoid transform and insert a "straight" quote character instead, enter
@@ -87,6 +87,14 @@ To avoid transform and insert a "straight" quote character instead, enter
 
 * `«Ctrl-V»"` - straight double quote
 * `«Ctrl-V»'` - straight single quote
+
+Note that for units of measurement you’ll want to use the prime symbol rather
+than straight quotes, as in:
+
+  ```
+  Standing at 7′3″ (2.21 m), Hasheem Thabeet of the Oklahoma City Thunder is the tallest 
+  player in the NBA.
+  ```
 
 ### Commands
 
@@ -205,6 +213,8 @@ or via your operating system’s keyboard shortcuts.
 | `›`   | `1>`        | `Shift-Opt-\`      | right pointing single quotation mark
 | `«`   | `<<`        | `Opt-\`            | left pointing double quotation mark
 | `»`   | `>>`        | `Shift-Opt-\`      | right pointing double quotation mark
+| `′`   | `1'`        |                    | single prime  
+| `″`   | `2'`        |                    | double prime  
 | `–`   | `-N`        | `Opt-hyphen`       | en dash
 | `—`   | `-M`        | `Shift-Opt-hyphen` | em dash
 | `…`   | `..`        | `Opt-;`            | horizontal ellipsis
