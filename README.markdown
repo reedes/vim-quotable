@@ -116,28 +116,24 @@ map to keys by adding to your `.vimrc`:
   nmap <silent> <leader>qq :QuotableEducateToggle<cr>
   ```
 
-### Educate levels
+### Basic and advanced levels
 
-The educate quotes feature has three levels of functionality: ‘off’(0),
-‘smart’(1) and ‘smarter’(2) which can be configured with a global variable in
-your `.vimrc`:
+The educate feature has two levels of functionality: basic(1) and advanced(2)
+which can be configured via a global variable in your `.vimrc`:
 
   ```vim
-  let g:quotable#educateLevel = 2
+  let g:quotable#educateLevel = 1
   ```
 
-The ‘off’(0) level disables the feature and retains the straight quote behavior
-for the quote keys. Not even `QuotableEducateOn` can override this setting.
+As the name would imply, the basic(1) level provides basic support for
+typographical quotes, with no-frills behavior. This is the default.
 
-The ‘smart’(1) level provides basic support for typographical quotes, providing
-no-frills behavior.
-
-More advanced is the ‘smarter’(2) mode that provides context as you type. If
-you’re at the end of a line (or prior to whitespace) a matching pair of quotes
-(`“”` or `‘’`) will be inserted together rather than a single opening quote.
-The closing quote(s) will be then be pushed ahead of your inserted text. You
-can step through the closing quote by hitting the corresponding quote key (`"`
-or `'`) where there is no need to exit Insert mode or use arrow keys.
+Or you may prefer the advanced(2) mode that provides context as you type. With
+this mode, a matching pair of quotes (`“”` or `‘’`) will be inserted together
+rather than a single opening quote. The closing quote(s) will be then be pushed
+ahead of your inserted text. You can step through the closing quote by hitting
+the corresponding quote key (`"` or `'`) where there is no need to exit Insert
+mode or use arrow keys.
 
 ## Motion commands
 

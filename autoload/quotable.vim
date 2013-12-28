@@ -29,7 +29,6 @@ function! s:educateQuotes(mode)
   " mode=1 is double; mode=0 is single
   " Can't use simple byte offset to find previous character,
   " due to unicode characters having more than one byte!
-  if g:quotable#educateLevel == 0 | return | endif
   if a:mode
     let l:l = b:quotable_dl
     let l:r = b:quotable_dr
