@@ -29,17 +29,13 @@ function! s:educateQuotes(mode)
   " mode=1 is double; mode=0 is single
   " Can't use simple byte offset to find previous character,
   " due to unicode characters having more than one byte!
-  if g:quotable#educateLevel == 0
-    return
-  endif
+  if g:quotable#educateLevel == 0 | return | endif
   if a:mode
     let l:l = b:quotable_dl
     let l:r = b:quotable_dr
-    let l:al = b:quotable_sl
   else
     let l:l = b:quotable_sl
     let l:r = b:quotable_sr
-    let l:al = b:quotable_dl
   endif
   let l:mline = getline('.')
   let l:mcol = col('.')
@@ -61,9 +57,12 @@ function! s:educateQuotes(mode)
       \ l:prev_char_count > 0
       \ ? l:prev_chars[ l:prev_char_count - 1 ]
       \ : ''
-    if l:prev_char =~# '^\(\|\s\|{\|(\|\[\|&\)$' || l:prev_char ==# l:al
+    if l:prev_char =~# '^\(\|\s\|{\|(\|\[\|&\)$' ||
+     \ l:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
       let l:is_paired =
-        \ g:quotable#educateLevel == 2 && l:next_char =~# '^\(\s\|\)$'
+        \ g:quotable#educateLevel == 2 &&
+        \   (l:next_char =~# '^\(\s\|\)$' ||
+        \    l:next_char ==# (a:mode ? b:quotable_sr : b:quotable_dr))
       let @z = l:l . (l:is_paired ? l:r : '')
     else
       let l:is_paired = 0
@@ -71,8 +70,14 @@ function! s:educateQuotes(mode)
     endif
     " Now paste the quote char(s) and move as needed
     if l:next_char_count
-      normal! "zPl
+      " one or more characters to the right
+      if l:is_paired
+        normal! "zP
+      else
+        normal! "zPl
+      endif
     else
+      " we're at the end of the line
       if l:is_paired
         normal! "zpl
       else
@@ -104,7 +109,7 @@ endfunction
 
 function! quotable#educateToggleMappings()
   " Toggle mapped keys for current buffer
-  let l:educate = 
+  let l:educate =
     \ !exists('b:quotable_educate_mapped')
     \ ? 1
     \ : !b:quotable_educate_mapped

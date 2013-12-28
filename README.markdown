@@ -257,4 +257,3 @@ their `.vimrc`:
 
 If you have any ideas on improving this plugin, please post them to the github
 project issue page.
-
