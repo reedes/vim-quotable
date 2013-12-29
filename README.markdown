@@ -268,8 +268,7 @@ their `.vimrc`:
 If you like this plugin, you may like these other ones from the same
 author:
 
-* [vim-litecorrect](http://github.com/reedes/vim-litecorrect)
-  - Lightweight auto-correction for Vim
+* [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
 * [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to
   better support writing prose and documentation
 
