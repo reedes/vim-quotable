@@ -263,7 +263,16 @@ their `.vimrc`:
   nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
   ```
 
+## See also
+
+If you like this plugin, you may like this other one from the same author:
+
+* [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better
+  support writing prose and documentation
+
 ## Future development
 
 If you have any ideas on improving this plugin, please post them to the github
 project issue page.
+
+<!-- vim: set tw=74 :-->

@@ -88,12 +88,7 @@ endfunction
 
 function! quotable#mapKeysToEducate(...)
   " Un/Map keys to un/educate quotes for current buffer
-  if a:0
-    let b:quotable_educate_mapped = !!a:1
-  else
-    let b:quotable_educate_mapped = 1
-  endif
-
+  let b:quotable_educate_mapped = a:0 ? !!a:1 : 1
   if b:quotable_educate_mapped
     inoremap <buffer> " <C-\><C-O>:call <SID>educateQuotes(1)<CR>
     inoremap <buffer> ' <C-\><C-O>:call <SID>educateQuotes(0)<CR>
@@ -138,7 +133,7 @@ endfunction
 function! quotable#init(...)
   if !s:unicode_enabled() | return | endif
 
-  let l:args = a:0 > 0 ? a:1 : {}
+  let l:args = a:0 ? a:1 : {}
   let l:double_pair = get(l:args, 'double', g:quotable#doubleDefault)
   let l:single_pair = get(l:args, 'single', g:quotable#singleDefault)
   let l:educate     = get(l:args, 'educate', 1)
