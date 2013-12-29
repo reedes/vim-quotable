@@ -265,10 +265,13 @@ their `.vimrc`:
 
 ## See also
 
-If you like this plugin, you may like this other one from the same author:
+If you like this plugin, you may like these other ones from the same
+author:
 
-* [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better
-  support writing prose and documentation
+* [vim-litecorrect](http://github.com/reedes/vim-litecorrect)
+  - Lightweight auto-correction for Vim
+* [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to
+  better support writing prose and documentation
 
 ## Future development
 
