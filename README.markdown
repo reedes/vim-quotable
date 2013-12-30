@@ -76,14 +76,13 @@ as you type:
 
 ### Entering straight quotes
 
-However, in some cases straight quotes are desired, such as:
+In some cases, straight (ASCII) quotes are needed, such as:
 
   ```
   “print "Hello World!"” is a simple program you can write in Python.
   ```
 
-To avoid transform and insert a "straight" quote character instead, enter
-`«Ctrl-V»` before quote key:
+To insert a straight quote instead, enter `«Ctrl-V»` before quote key:
 
 * `«Ctrl-V»"` - straight double quote
 * `«Ctrl-V»'` - straight single quote
@@ -98,7 +97,7 @@ than straight quotes, as in:
 
 ### Commands
 
-You can enable (or toggle) the educating behavior with the following Ex
+You can enable (or toggle) the educating behavior with the following 
 commands:
 
   ```vim
@@ -108,7 +107,7 @@ commands:
   ```
 
 `QuotableEducateOn` will map the quote keys for transformation. Or better yet,
-map to keys by adding to your `.vimrc`:
+map to keys via your `.vimrc`:
 
   ```vim
   nmap <silent> <leader>q1 :QuotableEducateOn<cr>
@@ -122,7 +121,7 @@ The educate feature has two levels of functionality: basic(1) and advanced(2)
 which can be configured via a global variable in your `.vimrc`:
 
   ```vim
-  let g:quotable#educateLevel = 1
+  let g:quotable#educateLevel = 1     " 1=basic, 2=advanced
   ```
 
 As the name would imply, the basic(1) level provides basic support for
