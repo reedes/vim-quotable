@@ -82,7 +82,7 @@ In some cases, straight (ASCII) quotes are needed, such as:
   “print "Hello World!"” is a simple program you can write in Python.
   ```
 
-To insert a straight quote instead, enter `«Ctrl-V»` before quote key:
+To insert a straight quote while educating, enter `«Ctrl-V»` before the quote key:
 
 * `«Ctrl-V»"` - straight double quote
 * `«Ctrl-V»'` - straight single quote
