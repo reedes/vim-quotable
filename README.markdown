@@ -268,7 +268,6 @@ If you like this plugin, you might like these others from the same author:
 
 * [vim-lexical](http://github.com/reedes/vim-lexical) - Building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect](http://github.com/reedes/vim-litecorrect) - Lightweight auto-correction for Vim
-* [vim-thematic-gui](http://github.com/reedes/vim-thematic-gui) — A GUI-based extension to the thematic plugin for Vim
 * [vim-thematic](http://github.com/reedes/vim-thematic) — Conveniently manage Vim’s appearance to suit your task and environment 
 * [vim-writer](http://github.com/reedes/vim-writer) - Extending Vim to better support writing prose and documentation
 
