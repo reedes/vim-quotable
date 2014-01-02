@@ -84,8 +84,8 @@ In some cases, straight (ASCII) quotes are needed, such as:
 
 To insert a straight quote while educating, enter `«Ctrl-V»` before the quote key:
 
-* `«Ctrl-V»"` - straight double quote
-* `«Ctrl-V»'` - straight single quote
+* `«Ctrl-V» "` - straight double quote
+* `«Ctrl-V» '` - straight single quote
 
 Note that for units of measurement you’ll want to use the prime symbol rather
 than straight quotes, as in:
@@ -220,7 +220,7 @@ or via your operating system’s keyboard shortcuts.
 For example, to enter left double quotation mark `“`, precede the digraph code
 `"6` with `Ctrl-K`, like
 
-* `«Ctrl-K»"6`
+* `«Ctrl-K» "6`
 
 Alternatively, if you’re on OS X, you can enter `Opt-[` to enter this
 character.
