@@ -133,7 +133,7 @@ rather than a single opening quote. The closing quote(s) will be then be pushed
 ahead of your inserted text. You can step through the closing quote by hitting
 the corresponding quote key (`"` or `'`) where there is no need to exit Insert
 mode or use arrow keys. Or better yet, move past the closing quote(s) with a 
-motion command, such as `«Ctrl-O» w`.
+motion command, such as `«Ctrl-O» W`.
 
 ## Motion commands
 
