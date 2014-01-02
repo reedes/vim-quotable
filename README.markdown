@@ -132,7 +132,8 @@ this mode, a matching pair of quotes (`“”` or `‘’`) will be inserted tog
 rather than a single opening quote. The closing quote(s) will be then be pushed
 ahead of your inserted text. You can step through the closing quote by hitting
 the corresponding quote key (`"` or `'`) where there is no need to exit Insert
-mode or use arrow keys.
+mode or use arrow keys. Or better yet, move past the closing quote(s) with a 
+motion command, such as `«Ctrl-O» w`.
 
 ## Motion commands
 
