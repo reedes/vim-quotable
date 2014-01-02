@@ -28,7 +28,7 @@ Requires a recent version of Vim compiled with Unicode support.
 Install using Pathogen, Vundle, Neobundle, or your favorite Vim package
 manager.
 
-*Strongly recommended* - To support typographic characters as text objects, the
+*Strongly recommended* - To support typographic quotes as text objects, the
 following dependency should be installed.
 
 * [kana/vim-textobject-user](https://github.com/kana/vim-textobj-user) - a Vim plugin to create your own text objects without pain
