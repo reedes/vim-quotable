@@ -48,13 +48,13 @@ quote support in `markdown` and `textile` files, place in your `.vimrc`:
   augroup END
   ```
 
-The last statement installs this plugin for buffers of `python` file type, but
+The last statement initializes the plugin for buffers of `python` file type, but
 disables the ‘educate’ feature by default. More on that below.
 
 ## Educating straight quotes
 
 This plugin will ‘educate’ quotes, meaning that it will dynamically transform
-straight quote key presses (`"` or `'`) into corresponding typographical quote
+straight quote key presses (`"` or `'`) into corresponding typographic quote
 characters.
 
 For example, entering the following sentence without this plugin using the
@@ -66,7 +66,7 @@ straight quote keys:
   ```
 
 As expected all the quotes are straight ones. But with this plugin, the
-straight quotes are transformed into the appropriate typographical equivalent
+straight quotes are transformed into the appropriate typographic equivalent
 as you type:
 
   ```
@@ -125,7 +125,7 @@ which can be configured via a global variable in your `.vimrc`:
   ```
 
 As the name would imply, the basic(1) level provides basic support for
-typographical quotes, with no-frills behavior. This is the default.
+typographic quotes, with no-frills behavior. This is the default.
 
 Or you may prefer the advanced(2) mode that provides context as you type. With
 this mode, a matching pair of quotes (`“”` or `‘’`) will be inserted together
@@ -162,7 +162,7 @@ to your `.vimrc`, changing the motion characters as you desire:
 
 Matchit enables jumping to matching quotes.
 
-* `%` - jump to the matching typographical quote character
+* `%` - jump to the matching typographic quote character
 
 ## Surround support
 
@@ -193,7 +193,7 @@ have replace abilities on pairs of characters:
 
 ## Entering special characters
 
-Sometimes you must enter special characters (like typographical quotes)
+Sometimes you must enter special characters (like typographic quotes)
 manually, such as in a search expression. You can do so through Vim’s digraphs
 or via your operating system’s keyboard shortcuts.
 
