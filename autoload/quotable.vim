@@ -66,21 +66,33 @@ function! s:educateQuotes(mode)
       let l:is_paired = 0
       let @z = l:r
     endif
+    let l:is_all = &virtualedit =~# 'all'
+    let l:is_block = &virtualedit =~# 'block'
+    let l:is_all_but_not_block = l:is_all && !l:is_block
     " Now paste the quote char(s) and move as needed
     if l:next_char_count
       " one or more characters to the right
+      " Be sure to test dropping quote in middle of text
       if l:is_paired
-        normal! "zP
+        normal! "zgPh
       else
-        normal! "zPl
+        normal! "zgP
       endif
     else
-      " we're at the end of the line
-      if l:is_paired
-        normal! "zpl
+      " no characters to the right
+      if l:is_all_but_not_block
+        " avoid inserting an extra space before the pasted text
+        if l:is_paired
+          normal! "zgPh
+        else
+          normal! "zgP
+        endif
       else
         normal! "zp
-        startinsert!
+        if ! l:is_paired
+          " need to force insert to get past entered character
+          startinsert!
+        endif
       endif
     endif
   endif
