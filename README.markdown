@@ -273,6 +273,8 @@ If you like this plugin, you might like these others from the same author:
 * [vim-pencil](http://github.com/reedes/vim-pencil) - Rethinking Vim as a tool for writers
 * [vim-colors-pencil](http://github.com/reedes/vim-colors-pencil) — A color scheme for Vim inspired by IA Writer
 
+* [quotable at vim.org](http://www.vim.org/scripts/script.php?script_id=4811)
+
 ## Future development
 
 If you’ve spotted a problem or have an idea on improving this plugin,
