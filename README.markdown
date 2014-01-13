@@ -263,6 +263,15 @@ their `.vimrc`:
   nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
   ```
 
+## Autoformat support
+
+_quotable_ works best with autoformat when you use the `w` option as well, 
+like this:
+
+```
+set formatoptions+=aw
+```
+
 ## See also
 
 If you like this plugin, you might like these others from the same author:
