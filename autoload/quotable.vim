@@ -101,6 +101,9 @@ endfunction
 function! quotable#mapKeysToEducate(...)
   " Un/Map keys to un/educate quotes for current buffer
   let b:quotable_educate_mapped = a:0 ? !!a:1 : 1
+  if !exists('b:quotable_dl')
+    call quotable#init()
+  endif
   if b:quotable_educate_mapped
     inoremap <buffer> " <C-\><C-O>:call <SID>educateQuotes(1)<CR>
     inoremap <buffer> ' <C-\><C-O>:call <SID>educateQuotes(0)<CR>
