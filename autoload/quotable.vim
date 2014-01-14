@@ -26,16 +26,7 @@ function! s:educateQuotes(mode)
   " mode=1 is double; mode=0 is single
   " Can't use simple byte offset to find previous character,
   " due to unicode characters having more than one byte!
-  if a:mode
-    let l:l = b:quotable_dl
-    let l:r = b:quotable_dr
-  else
-    let l:l = b:quotable_sl
-    let l:r = b:quotable_sr
-  endif
-  let l:mline = getline('.')
-  let l:mcol = col('.')
-  let l:prev_chars = split(strpart(l:mline, 0, l:mcol-1), '\zs')
+  let l:prev_chars = split(strpart(getline('.'), 0, col('.')-1), '\zs')
   let l:prev_char_count = len(l:prev_chars)
   let l:prev_char =
     \ l:prev_char_count > 0
@@ -44,8 +35,8 @@ function! s:educateQuotes(mode)
   return
     \ l:prev_char =~# '^\(\|\s\|{\|(\|\[\|&\)$' ||
     \ l:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
-    \ ? l:l
-    \ : l:r
+    \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
+    \ : (a:mode ? b:quotable_dr : b:quotable_sr)
 endfunction
 
 function! quotable#mapKeysToEducate(...)
