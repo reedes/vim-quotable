@@ -34,12 +34,6 @@ if !exists('g:quotable#singleDefault')
   let g:quotable#singleDefault = g:quotable#singleStandard
 endif
 
-if !exists('g:quotable#educateLevel')
-  " 1: basic
-  " 2: advanced
-  let g:quotable#educateLevel = 1
-endif
-
 " needed to match pairs of quotes (via tpope/vim-sensible)
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
   runtime! macros/matchit.vim

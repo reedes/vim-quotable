@@ -117,23 +117,19 @@ map to keys via your `.vimrc`:
 
 ### Basic and advanced levels
 
-The educate feature has two levels of functionality: basic(1) and advanced(2)
-which can be configured via a global variable in your `.vimrc`:
+Note: I removed support for the advanced level as it proved annoyingly
+incompatible with Vim’s autoformat feature.
 
-  ```vim
-  let g:quotable#educateLevel = 1     " 1=basic, 2=advanced
-  ```
+For those who didn’t try it, the advanced level inserted quotes in pairs
+when there were no leading or trailing word characters. The cursor then
+took its place between those quotes to add context as the right quote(s)
+would be pushed ahead of your quoted text.
 
-As the name would imply, the basic(1) level provides basic support for
-typographic quotes, with no-frills behavior. This is the default.
+Advanced level can return if someone can figure out how to implement in
+a way that is compatible with autoformat.
 
-Or you may prefer the advanced(2) mode that provides context as you type. With
-this mode, a matching pair of quotes (`“”` or `‘’`) will be inserted together
-rather than a single opening quote. The closing quote(s) will be then be pushed
-ahead of your inserted text. You can step through the closing quote by hitting
-the corresponding quote key (`"` or `'`) where there is no need to exit Insert
-mode or use arrow keys. Or better yet, move past the closing quote(s) with a 
-motion command, such as `«Ctrl-O» W`.
+The very capable basic level of functionality (as featured in the demo
+above) happily remains unchanged.
 
 ## Motion commands
 
@@ -262,15 +258,6 @@ their `.vimrc`:
   nmap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
   nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
   ```
-
-## Autoformat support
-
-_quotable_ works best with autoformat when you use the `w` option as well, 
-like this:
-
-```
-set formatoptions+=aw
-```
 
 ## See also
 
