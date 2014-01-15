@@ -115,22 +115,6 @@ map to keys via your `.vimrc`:
   nmap <silent> <leader>qq :QuotableEducateToggle<cr>
   ```
 
-### Basic and advanced levels
-
-Note: I removed support for the advanced level as it proved annoyingly
-incompatible with Vim’s autoformat feature.
-
-For those who didn’t try it, the advanced level inserted quotes in pairs
-when there were no leading or trailing word characters. The cursor then
-took its place between those quotes to add context as the right quote(s)
-would be pushed ahead of your quoted text.
-
-Advanced level can return if someone can figure out how to implement in
-a way that is compatible with autoformat.
-
-The very capable basic level of functionality (as featured in the demo
-above) happily remains unchanged.
-
 ## Motion commands
 
 Motion commands are a powerful feature of Vim.
