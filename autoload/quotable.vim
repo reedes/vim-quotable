@@ -2,7 +2,7 @@
 " File:        quotable.vim
 " Description: autoload functions for vim-quotable plugin
 " Maintainer:  Reed Esau <github.com/reedes>
-" Last Change: December 25, 2013
+" Created:     December 25, 2013
 " License:     The MIT License (MIT)
 " ============================================================================
 
