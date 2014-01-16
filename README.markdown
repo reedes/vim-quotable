@@ -203,7 +203,7 @@ For example, to enter left double quotation mark `“`, precede the digraph code
 
 * `«Ctrl-K» "6`
 
-Alternatively, if you’re on OS X, you can enter `Opt-[` to enter this
+Alternatively, if you’re on OS X, you can use `Opt-[` to enter this
 character.
 
 For more details, see:
@@ -212,9 +212,9 @@ For more details, see:
 
 ## International support
 
-Many international keyboards feature keys to allow you to input the desired
-typographic quote directly. In such cases, you won’t need to change the
-behavior of the straight quote keys.
+Many international keyboards feature keys to allow you to input 
+typographic quote characters directly. In such cases, you won’t need 
+to change the behavior of the straight quote keys.
 
 But if you do, a standard convention is used by default:
 
@@ -223,7 +223,7 @@ But if you do, a standard convention is used by default:
   let g:quotable#singleDefault = '‘’'     " ‘single’
   ```
 
-Those users editing all of their prose in German may want to change their
+Those users editing most of their prose in German may want to change their
 defaults to:
 
   ```vim
@@ -236,11 +236,11 @@ pairings within a single buffer, adding the following key mappings to
 their `.vimrc`:
 
   ```vim
-  nmap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
-  nmap <silent> <leader>qs :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
-  nmap <silent> <leader>qg :call quotable#init({ 'double':'„“', 'single':'‚‘' })<cr>
-  nmap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
-  nmap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
+  nnoremap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
+  nnoremap <silent> <leader>qs :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
+  nnoremap <silent> <leader>qg :call quotable#init({ 'double':'„“', 'single':'‚‘' })<cr>
+  nnoremap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
+  nnoremap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>
   ```
 
 ## See also
@@ -252,7 +252,6 @@ If you like this plugin, you might like these others from the same author:
 * [vim-thematic](http://github.com/reedes/vim-thematic) — Conveniently manage Vim’s appearance to suit your task and environment 
 * [vim-pencil](http://github.com/reedes/vim-pencil) - Rethinking Vim as a tool for writers
 * [vim-colors-pencil](http://github.com/reedes/vim-colors-pencil) — A color scheme for Vim inspired by IA Writer
-
 * [quotable at vim.org](http://www.vim.org/scripts/script.php?script_id=4811)
 
 ## Future development
