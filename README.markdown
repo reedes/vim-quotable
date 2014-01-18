@@ -66,8 +66,8 @@ straight quote keys:
   ```
 
 As expected all the quotes are straight ones. But with this plugin, the
-straight quotes are transformed into the appropriate typographic equivalent
-as you type:
+straight quotes are transformed into the typographic equivalent as you
+type:
 
   ```
   “It’s Dr. Evil. I didn’t spend six years in Evil Medical School to be called ‘mister,’
@@ -142,11 +142,27 @@ to your `.vimrc`, changing the motion characters as you desire:
 
 Matchit enables jumping to matching quotes.
 
-* `%` - jump to the matching typographic quote character
+* `%` - jump to the matching typographic (curly) quote character
+
+## Replace support
+
+You can replace straight quotes in existing text with curly quotes, and
+visa versa. Add key mappings of your choice to your `.vimrc`:
+
+```
+map <silent> <leader>qc <Plug>QuotableReplaceWithCurly
+map <silent> <leader>qs <Plug>QuotableReplaceWithStraight
+```
+
+Both _Normal_ and _Visual_ modes are supported by this feature.
+
+To transform all quotes in a document, use _Visual_ mode to select all the
+text in the document.
 
 ## Surround support
 
-This plugin supports basic surround capabilities. Add to your `.vimrc`:
+This plugin supports basic surround capabilities. Add to your `.vimrc` key
+mappings of your choice:
 
   ```vim
   " NOTE: be sure to remove these mappings if using the tpope/vim-surround plugin!
@@ -237,7 +253,7 @@ their `.vimrc`:
 
   ```vim
   nnoremap <silent> <leader>qd :call quotable#init()<cr>    " forces defaults
-  nnoremap <silent> <leader>qs :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
+  nnoremap <silent> <leader>qn :call quotable#init({ 'double':'“”', 'single':'‘’' })<cr>
   nnoremap <silent> <leader>qg :call quotable#init({ 'double':'„“', 'single':'‚‘' })<cr>
   nnoremap <silent> <leader>qx :call quotable#init({ 'double':'„”', 'single':'‚’' })<cr>
   nnoremap <silent> <leader>qf :call quotable#init({ 'double':'«»', 'single':'‹›' })<cr>

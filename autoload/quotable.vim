@@ -26,15 +26,19 @@ function! s:educateQuotes(mode)
   " mode=1 is double; mode=0 is single
   " Can't use simple byte offset to find previous character,
   " due to unicode characters having more than one byte!
-  let l:prev_char =
-    \ get( split(strpart(getline('.'), 0, col('.')-1), '\zs'),
-    \      -1,
-    \      '')
   return
-    \ l:prev_char =~# '^\(\|\s\|{\|(\|\[\|&\)$' ||
-    \ l:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
-    \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
-    \ : (a:mode ? b:quotable_dr : b:quotable_sr)
+  \ s:educate(a:mode,
+            \ get( split(strpart(getline('.'), 0, col('.')-1), '\zs'),
+            \ -1,
+            \ '')
+            \ )
+endfunction
+
+function! s:educate(mode, prev_char)
+  return a:prev_char =~# '^\(\|\s\|{\|(\|\[\|&\)$' ||
+       \ a:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
+       \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
+       \ : (a:mode ? b:quotable_dr : b:quotable_sr)
 endfunction
 
 function! quotable#mapKeysToEducate(...)
@@ -42,6 +46,7 @@ function! quotable#mapKeysToEducate(...)
   let b:quotable_educate_mapped = a:0 ? !!a:1 : 1
   if !exists('b:quotable_dl')
     call quotable#init()
+    if !s:unicode_enabled() | return | endif
   endif
   if b:quotable_educate_mapped
     " For details on the leading <C-R>, see :help ins-special-special
@@ -60,6 +65,43 @@ function! quotable#educateToggleMappings()
     \ ? 1
     \ : !b:quotable_educate_mapped
   call quotable#mapKeysToEducate(l:educate)
+endfunction
+
+function! quotable#replace(mode, visual)
+  if !exists('b:quotable_dl') | return | endif
+  " Extract the target text...
+  if len(a:visual) > 0
+      silent normal gvy
+  else
+      silent normal vipy
+  endif
+  let l:text = getreg('')
+
+  if a:mode ==# 0     " replace curly with straight
+    let l:rtext = substitute(l:text , '[' . b:quotable_sl . b:quotable_sr . ']',"'","g")
+    let l:rtext = substitute(l:rtext, '[' . b:quotable_dl . b:quotable_dr . ']','"',"g")
+  else
+    " a:mode ==# 1    " replace straight with curly
+    let l:items = split(l:text, '\zs')
+    let l:prev_char = ''
+    let l:n = 0
+    let l:count = len(l:items)
+    while l:n < l:count
+      let l:ch = l:items[l:n]
+      if l:ch ==# '"'
+        let l:items[l:n] = s:educate(1, l:prev_char)
+      elseif l:ch ==# "'"
+        let l:items[l:n] = s:educate(0, l:prev_char)
+      endif
+      let l:prev_char = l:ch
+      let l:n += 1
+    endwhile
+    let l:rtext = join(l:items, '')
+  endif
+
+  " Paste back into buffer in place of original...
+  call setreg('', l:rtext, mode())
+  silent normal gvp
 endfunction
 
 function! quotable#surround(mode, visual)

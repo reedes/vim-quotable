@@ -44,6 +44,12 @@ command -nargs=0 QuotableEducateOn call quotable#mapKeysToEducate(1)
 command -nargs=0 QuotableEducateOff call quotable#mapKeysToEducate(0)
 command -nargs=0 QuotableEducateToggle call quotable#educateToggleMappings()
 
+" replace quotes in bulk
+nnoremap <Plug>QuotableReplaceWithCurly    :call quotable#replace(1, '')<cr>
+vnoremap <Plug>QuotableReplaceWithCurly    :<C-u>call quotable#replace(1, visualmode())<cr>
+nnoremap <Plug>QuotableReplaceWithStraight :call quotable#replace(0, '')<cr>
+vnoremap <Plug>QuotableReplaceWithStraight :<C-u>call quotable#replace(0, visualmode())<cr>
+
 " a simple alterative to tpope/vim-surround
 nnoremap <Plug>QuotableSurroundDouble :call quotable#surround(1, '')<cr>
 vnoremap <Plug>QuotableSurroundDouble :<C-u>call quotable#surround(1, visualmode())<cr>
