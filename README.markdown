@@ -15,6 +15,7 @@ Features of this plugin:
 * Motion support for typographic quote pairs
 * Matchit `%` matching for typographic quote pairs
 * User can define alternative typographic quote pairs
+* Replace quotes in existing text, including entire buffer
 * Support for the [vim-surround][] plugin
 
 [vim-surround]: https://github.com/tpope/vim-surround
