@@ -41,6 +41,11 @@ plugin can be configured per file type. For example, to enable typographic
 quote support in `markdown` and `textile` files, place in your `.vimrc`:
 
   ```vim
+  " standard vim command to enable loading the plugin files 
+  " (and their indent support) for specific file types.
+  " It may already be in your .vimrc!
+  filetype plugin indent on
+
   augroup quotable
     autocmd!
     autocmd FileType markdown call quotable#init()
@@ -267,12 +272,12 @@ their `.vimrc`:
 If you find this plugin useful, you may want to check out these others by
 the same author:
 
-* [vim-colors-pencil][cp] — Color scheme for Vim inspired by IA Writer
-* [vim-lexical][lx] - Building on Vim’s spell-check and thesaurus/dictionary completion
-* [vim-litecorrect][lc] - Lightweight auto-correction for Vim
-* [vim-pencil][pn] - Rethinking Vim as a tool for writers
-* [vim-thematic][th] —  appearance to suit your task and environment 
-* [vim-wordy][wo] - Uncovering potential usage problems in writing 
+* [vim-colors-pencil][cp] — color scheme for Vim inspired by IA Writer
+* [vim-lexical][lx] - building on Vim’s spell-check and thesaurus/dictionary completion
+* [vim-litecorrect][lc] - lightweight auto-correction for Vim
+* [vim-pencil][pn] - rethinking Vim as a tool for writers
+* [vim-thematic][th] — modify Vim’s appearance to suit your task and environment 
+* [vim-wordy][wo] - uncovering usage problems in writing 
 
 [cp]: http://github.com/reedes/vim-colors-pencil
 [lx]: http://github.com/reedes/vim-lexical
