@@ -160,14 +160,17 @@ function! quotable#init(...)
 
   " add text object support
   try
+    let l:xtra = '\ze\(\W\|$\)' " specialized closing pattern to ignore use of quote in contractions
     call textobj#user#plugin('quotable', {
     \      'double-quotation-mark': {
-    \         '*pattern*': [ b:quotable_dl, b:quotable_dr ],
+    \         '*pattern*': [ b:quotable_dl,
+    \                        b:quotable_dr . (b:quotable_dr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#doubleMotion,
     \         'select-i': 'i' . g:quotable#doubleMotion,
     \      },
     \      'single-quotation-mark': {
-    \         '*pattern*': [ b:quotable_sl, b:quotable_sr ],
+    \         '*pattern*': [ b:quotable_sl,
+    \                        b:quotable_sr . (b:quotable_sr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#singleMotion,
     \         'select-i': 'i' . g:quotable#singleMotion,
     \      },
@@ -176,37 +179,5 @@ function! quotable#init(...)
     " plugin likely not installed; fail silently
   endtry
 
-    "      'dbl1': {
-    "         'select-a-function': 'MyQuoteA',
-    "         'select-a': 'a' . g:quotable#doubleMotion,
-    "         'select-i-function': 'MyQuoteI',
-    "         'select-i': 'i' . g:quotable#doubleMotion,
-    "      },
-    "      'dbl2': {
-    "        'pattern': '\<\d\d\d\d-\d\d-\d\d\>',
-    "        'select': ['a' . g:quotable#doubleMotion',
-    "                   'i' . g:quotable#doubleMotion],
-    "      },
   call quotable#mapKeysToEducate(l:educate)
-endfunction
-
-" [ b:quotable_dl, b:quotable_dr ],
-function! MyQuoteA()
-  normal! 0
-  let head_pos = getpos('.')
-  normal! $
-  let tail_pos = getpos('.')
-  return ['v', head_pos, tail_pos]
-endfunction
-
-function! MyQuoteI()
-  normal! ^
-  let head_pos = getpos('.')
-  normal! g_
-  let tail_pos = getpos('.')
-  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
-  return
-  \ non_blank_char_exists_p
-  \ ? ['v', head_pos, tail_pos]
-  \ : 0
 endfunction
