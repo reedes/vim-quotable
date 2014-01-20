@@ -136,6 +136,14 @@ By default, for motion commands, `q` denotes “double” quotes and `Q` denotes
 Apart from `c` for change, you can `v` for visual selection, `d` for deletion,
 `y` for yanking to clipboard, etc.
 
+_Quotable_’s motion command is smart too, able to distinguish between an
+apostrophe and single closing quote, even though both are represented by
+the same glyph. For example, try out `viQ` on the following sentence:
+
+```
+‘Really, I’d rather not relive the ’70s,’ said zombie Elvis.
+```
+
 If you don’t like the defaults, you can redefine these by adding the following
 to your `.vimrc`, changing the motion characters as you desire:
 
