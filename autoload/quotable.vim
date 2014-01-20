@@ -176,5 +176,37 @@ function! quotable#init(...)
     " plugin likely not installed; fail silently
   endtry
 
+    "      'dbl1': {
+    "         'select-a-function': 'MyQuoteA',
+    "         'select-a': 'a' . g:quotable#doubleMotion,
+    "         'select-i-function': 'MyQuoteI',
+    "         'select-i': 'i' . g:quotable#doubleMotion,
+    "      },
+    "      'dbl2': {
+    "        'pattern': '\<\d\d\d\d-\d\d-\d\d\>',
+    "        'select': ['a' . g:quotable#doubleMotion',
+    "                   'i' . g:quotable#doubleMotion],
+    "      },
   call quotable#mapKeysToEducate(l:educate)
+endfunction
+
+" [ b:quotable_dl, b:quotable_dr ],
+function! MyQuoteA()
+  normal! 0
+  let head_pos = getpos('.')
+  normal! $
+  let tail_pos = getpos('.')
+  return ['v', head_pos, tail_pos]
+endfunction
+
+function! MyQuoteI()
+  normal! ^
+  let head_pos = getpos('.')
+  normal! g_
+  let tail_pos = getpos('.')
+  let non_blank_char_exists_p = getline('.')[head_pos[2] - 1] !~# '\s'
+  return
+  \ non_blank_char_exists_p
+  \ ? ['v', head_pos, tail_pos]
+  \ : 0
 endfunction
