@@ -2,6 +2,8 @@
 
 > “Extending Vim to better support typographic (‘curly’) quote characters.”
 
+APOSTROPHE FIX BRANCH
+
 ![demo](screenshots/demo.gif)
 
 While Vim is renown for its text manipulation capabilities, it nevertheless
