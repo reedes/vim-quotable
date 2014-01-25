@@ -5,10 +5,31 @@ Execute (Clean up test environment):
 
 Given:
 
+Do (basic educate on a problem I found):
+  ar'
+
+Expect:
+  r’
+
+###########################################################
+
+Given:
+
 Do (basic educate):
   a"It's 'Dr.' Evil, thank you very much."
 
 Expect:
   “It’s ‘Dr.’ Evil, thank you very much.”
 
+###########################################################
 
+Given:
+
+Do (educate with alternative quote characters):
+  :call quotable#init({ 'double':'„“', 'single':'‚‘' })\<Enter>
+  a"Es ist 'Doktor' Böse, ich danke Ihnen sehr."
+
+Expect:
+  „Es ist ‚Doktor‘ Böse, ich danke Ihnen sehr.“
+
+###########################################################
