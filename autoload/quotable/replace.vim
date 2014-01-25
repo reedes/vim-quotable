@@ -25,9 +25,9 @@ function! quotable#replace#replace(mode, visual)
     while l:n < l:count
       let l:ch = l:items[l:n]
       if l:ch ==# '"'
-        let l:items[l:n] = s:educate(1, l:prev_char)
+        let l:items[l:n] = quotable#educate#educate(1, l:prev_char)
       elseif l:ch ==# "'"
-        let l:items[l:n] = s:educate(0, l:prev_char)
+        let l:items[l:n] = quotable#educate#educate(0, l:prev_char)
       endif
       let l:prev_char = l:ch
       let l:n += 1

@@ -13,14 +13,14 @@ function! s:educateQuotes(mode)
   " Can't use simple byte offset to find previous character,
   " due to unicode characters having more than one byte!
   return
-  \ s:educate(a:mode,
+  \ quotable#educate#educate(a:mode,
             \ get( split(strpart(getline('.'), 0, col('.')-1), '\zs'),
             \ -1,
             \ '')
             \ )
 endfunction
 
-function! s:educate(mode, prev_char)
+function! quotable#educate#educate(mode, prev_char)
   return a:prev_char =~# '^\(\|\s\|r\|\n\|{\|(\|\[\|&\)$' ||
        \ a:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
        \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
