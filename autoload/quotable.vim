@@ -8,148 +8,17 @@
 
 scriptencoding utf-8
 
-if exists("autoloaded_quotable")
-  finish
-endif
-let autoloaded_quotable = 1
+if exists('g:loaded_quotable') && g:loaded_quotable
+  fini
+en
+let g:loaded_quotable = 1
 
 " TODO support these constants
 "let s:KEY_MODE_DOUBLE = 1
 "let s:KEY_MODE_SINGLE = 0
 
-" sentence motion
-" TODO needs to dynamically use quotable's current quotes
-let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
-let s:md_end   = '[_\*\]]*'
-let s:re_sentence_i =
-      \ '\v\s*\zs' .
-      \ s:md_start . '[\‘\“]*' .
-      \ s:md_start . '[[:upper:]]\_.{-}[\.\!\?]+' .
-      \ s:md_end . '[\’\”]*' .
-      \ s:md_end
-let s:re_sentence_a =
-      \ s:re_sentence_i . '($|\s*)'
-
 function! s:unicode_enabled()
   return &encoding == 'utf-8'
-endfunction
-
-" sentence motion/select
-function! s:select(pattern)
-  call search(a:pattern, 'bc')
-  let l:start = getpos('.')
-  call search(a:pattern, 'ce')
-  let l:end = getpos('.')
-  return ['v', l:start, l:end]
-endfunction
-function! quotable#select_a()
-  return s:select(s:re_sentence_a)
-endfunction
-function! quotable#select_i()
-  return s:select(s:re_sentence_i)
-endfunction
-
-function! s:educateQuotes(mode)
-  " intelligently insert curly quotes
-  " mode=1 is double; mode=0 is single
-  " Can't use simple byte offset to find previous character,
-  " due to unicode characters having more than one byte!
-  return
-  \ s:educate(a:mode,
-            \ get( split(strpart(getline('.'), 0, col('.')-1), '\zs'),
-            \ -1,
-            \ '')
-            \ )
-endfunction
-
-function! s:educate(mode, prev_char)
-  return a:prev_char =~# '^\(\|\s\|r\|\n\|{\|(\|\[\|&\)$' ||
-       \ a:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
-       \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
-       \ : (a:mode ? b:quotable_dr : b:quotable_sr)
-endfunction
-
-function! quotable#mapKeysToEducate(...)
-  " Un/Map keys to un/educate quotes for current buffer
-  let b:quotable_educate_mapped = a:0 ? !!a:1 : 1
-  if !exists('b:quotable_dl')
-    call quotable#init()
-    if !s:unicode_enabled() | return | endif
-  endif
-  if b:quotable_educate_mapped
-    " For details on the leading <C-R>, see :help ins-special-special
-    inoremap <buffer> " <C-R>=<SID>educateQuotes(1)<CR>
-    inoremap <buffer> ' <C-R>=<SID>educateQuotes(0)<CR>
-  else
-    silent! iunmap <buffer> "
-    silent! iunmap <buffer> '
-  endif
-endfunction
-
-function! quotable#educateToggleMappings()
-  " Toggle mapped keys for current buffer
-  let l:educate =
-    \ !exists('b:quotable_educate_mapped')
-    \ ? 1
-    \ : !b:quotable_educate_mapped
-  call quotable#mapKeysToEducate(l:educate)
-endfunction
-
-function! quotable#replace(mode, visual)
-  if !exists('b:quotable_dl') | return | endif
-  " Extract the target text...
-  if len(a:visual) > 0
-      silent normal gvy
-  else
-      silent normal vipy
-  endif
-  let l:text = getreg('')
-
-  if a:mode ==# 0     " replace curly with straight
-    let l:rtext = substitute(l:text , '[' . b:quotable_sl . b:quotable_sr . ']',"'","g")
-    let l:rtext = substitute(l:rtext, '[' . b:quotable_dl . b:quotable_dr . ']','"',"g")
-  else
-    " a:mode ==# 1    " replace straight with curly
-    let l:items = split(l:text, '\zs')
-    let l:prev_char = ''
-    let l:n = 0
-    let l:count = len(l:items)
-    while l:n < l:count
-      let l:ch = l:items[l:n]
-      if l:ch ==# '"'
-        let l:items[l:n] = s:educate(1, l:prev_char)
-      elseif l:ch ==# "'"
-        let l:items[l:n] = s:educate(0, l:prev_char)
-      endif
-      let l:prev_char = l:ch
-      let l:n += 1
-    endwhile
-    let l:rtext = join(l:items, '')
-  endif
-
-  " Paste back into buffer in place of original...
-  call setreg('', l:rtext, mode())
-  silent normal gvp
-endfunction
-
-function! quotable#surround(mode, visual)
-  " A simple alternative to Tim Pope's vim-surround
-  " wrap word/selection in curly quotes
-  " mode=1 is double; mode=0 is single
-  if !exists('b:quotable_dl') | return | endif
-  if a:mode
-    let l:l = b:quotable_dl
-    let l:r = b:quotable_dr
-  else
-    let l:l = b:quotable_sl
-    let l:r = b:quotable_sr
-  endif
-  if a:visual ==# 'v'
-    " note: the gv re-establishes the visual selection that <C-u> removed
-    execute "normal! gvc" . l:l . "\<C-r>\"" . l:r ." \<Esc>"
-  elseif a:visual ==# ''
-    execute "normal! ciw" . l:l . "\<C-r>\"" . l:r . "\<Esc>"
-  endif
 endfunction
 
 " set up mappings for current buffer only
@@ -187,8 +56,8 @@ function! quotable#init(...)
   let b:surround_81  = b:quotable_sl . "\r" . b:quotable_sr
 
   " add text object support
+  let l:xtra = '\ze\(\W\|$\)' " specialized closing pattern to ignore use of quote in contractions
   try
-    let l:xtra = '\ze\(\W\|$\)' " specialized closing pattern to ignore use of quote in contractions
     call textobj#user#plugin('quotable', {
     \      'double-quotation-mark': {
     \         'pattern':   [ b:quotable_dl,
@@ -204,11 +73,13 @@ function! quotable#init(...)
     \      },
     \      'sentence-select': {
     \         '*sfile*': expand('<sfile>:p'),
-    \         'select-a': 'as', '*select-a-function*': 'quotable#select_a',
-    \         'select-i': 'is', '*select-i-function*': 'quotable#select_i',
+    \         'select-a': 'a' . g:quotable#sentenceMotion,
+    \         'select-i': 'i' . g:quotable#sentenceMotion,
+    \         '*select-a-function*': 'quotable#sentence#select_a',
+    \         '*select-i-function*': 'quotable#sentence#select_i',
     \      },
     \      'sentence-move': {
-    \         'pattern': s:re_sentence_i,
+    \         'pattern': g:quotable#sentence#re_sentence_i,
     \         'move-p': '(',
     \         'move-n': ')',
     \         'move-P': 'g(',
@@ -219,5 +90,5 @@ function! quotable#init(...)
     " plugin likely not installed; fail silently
   endtry
 
-  call quotable#mapKeysToEducate(l:educate)
+  call quotable#educate#mapKeys(l:educate)
 endfunction

@@ -1,0 +1,14 @@
+Execute (Clean up test environment):
+  call quotable#init()
+
+###########################################################
+
+Given:
+  The cat is angry. The dog is happy.
+
+Do (basic motion):
+  vixU
+
+Expect:
+  THE CAT IS ANGRY. The dog is happy.
+
