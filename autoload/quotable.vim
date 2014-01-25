@@ -35,7 +35,7 @@ function! s:educateQuotes(mode)
 endfunction
 
 function! s:educate(mode, prev_char)
-  return a:prev_char =~# '^\(\|\s\|r\|\n\|{\|(\|\[\|&\)$' ||
+  return a:prev_char =~# '^\(\|\s\|\n\|{\|(\|\[\|&\)$' ||
        \ a:prev_char ==# (a:mode ? b:quotable_sl : b:quotable_dl)
        \ ? (a:mode ? b:quotable_dl : b:quotable_sl)
        \ : (a:mode ? b:quotable_dr : b:quotable_sr)
