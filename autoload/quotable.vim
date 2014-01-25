@@ -17,8 +17,36 @@ let autoloaded_quotable = 1
 "let s:KEY_MODE_DOUBLE = 1
 "let s:KEY_MODE_SINGLE = 0
 
+" sentence motion
+" TODO needs to dynamically use quotable's current quotes
+let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
+let s:md_end   = '[_\*\]]*'
+let s:re_sentence_i =
+      \ '\v\s*\zs' .
+      \ s:md_start . '[\‘\“]*' .
+      \ s:md_start . '[[:upper:]]\_.{-}[\.\!\?]+' .
+      \ s:md_end . '[\’\”]*' .
+      \ s:md_end
+let s:re_sentence_a =
+      \ s:re_sentence_i . '($|\s*)'
+
 function! s:unicode_enabled()
   return &encoding == 'utf-8'
+endfunction
+
+" sentence motion/select
+function! s:select(pattern)
+  call search(a:pattern, 'bc')
+  let l:start = getpos('.')
+  call search(a:pattern, 'ce')
+  let l:end = getpos('.')
+  return ['v', l:start, l:end]
+endfunction
+function! quotable#select_a()
+  return s:select(s:re_sentence_a)
+endfunction
+function! quotable#select_i()
+  return s:select(s:re_sentence_i)
 endfunction
 
 function! s:educateQuotes(mode)
@@ -173,6 +201,18 @@ function! quotable#init(...)
     \                        b:quotable_sr . (b:quotable_sr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#singleMotion,
     \         'select-i': 'i' . g:quotable#singleMotion,
+    \      },
+    \      'sentence-select': {
+    \         '*sfile*': expand('<sfile>:p'),
+    \         'select-a': 'as', '*select-a-function*': 'quotable#select_a',
+    \         'select-i': 'is', '*select-i-function*': 'quotable#select_i',
+    \      },
+    \      'sentence-move': {
+    \         'pattern': s:re_sentence_i,
+    \         'move-p': '(',
+    \         'move-n': ')',
+    \         'move-P': 'g(',
+    \         'move-N': 'g)',
     \      },
     \})
   catch /E117/
