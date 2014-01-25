@@ -163,13 +163,13 @@ function! quotable#init(...)
     let l:xtra = '\ze\(\W\|$\)' " specialized closing pattern to ignore use of quote in contractions
     call textobj#user#plugin('quotable', {
     \      'double-quotation-mark': {
-    \         '*pattern*': [ b:quotable_dl,
+    \         'pattern':   [ b:quotable_dl,
     \                        b:quotable_dr . (b:quotable_dr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#doubleMotion,
     \         'select-i': 'i' . g:quotable#doubleMotion,
     \      },
     \      'single-quotation-mark': {
-    \         '*pattern*': [ b:quotable_sl,
+    \         'pattern':   [ b:quotable_sl,
     \                        b:quotable_sr . (b:quotable_sr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#singleMotion,
     \         'select-i': 'i' . g:quotable#singleMotion,

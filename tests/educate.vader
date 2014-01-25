@@ -1,0 +1,14 @@
+Execute (Clean up test environment):
+  call quotable#init()
+
+###########################################################
+
+Given:
+
+Do (basic educate):
+  a"It's 'Dr.' Evil, thank you very much."
+
+Expect:
+  “It’s ‘Dr.’ Evil, thank you very much.”
+
+
