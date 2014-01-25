@@ -1,15 +1,52 @@
 Execute (Clean up test environment):
   call quotable#init()
 
+# TODO tests with quotes
+
 ###########################################################
 
 Given:
-  The cat is angry. The dog is happy.
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
 
-Do (basic motion):
+Do (select first sentence):
   vixU
 
 Expect:
-  THE CAT IS ANGRY. The dog is happy.
+  SO WHAT WE'VE DONE IS TAKEN THE WHOLE FOOSBALL CONCEPT, AND
+  UH... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
 
 ###########################################################
+
+Given:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
+
+Do (select second sentence):
+  /caulked\<Enter>vixU
+
+Expect:
+  So what we've done is taken the whole Foosball concept, and
+  uh... WE'VE CAULKED THIS, ADDED WATER, AND WE'VE TURNED IT
+  INTO WATER POLO. Woo!
+
+###########################################################
+
+Given:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
+
+Do (select third sentence):
+  /woo\<Enter>vixU
+
+Expect:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. WOO!
+
+###########################################################
+

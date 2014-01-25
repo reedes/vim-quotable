@@ -38,18 +38,6 @@ if !exists('g:quotable#singleDefault')
   let g:quotable#singleDefault = g:quotable#singleStandard
 endif
 
-" sentence motion
-" TODO needs to dynamically use quotable's current quotes
-let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
-let s:md_end   = '[_\*\]]*'
-let g:quotable#sentence#re_sentence_i =
-      \ '\v\s*\zs' .
-      \ s:md_start . '[\‘\“]*' .
-      \ s:md_start . '[[:upper:]]\_.{-}[\.\!\?]+' .
-      \ s:md_end . '[\’\”]*' .
-      \ s:md_end
-let g:quotable#sentence#re_sentence_a =
-      \ g:quotable#sentence#re_sentence_i . '($|\s*)'
 
 " needed to match pairs of quotes (via tpope/vim-sensible)
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''

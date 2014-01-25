@@ -40,6 +40,20 @@ function! quotable#init(...)
   let b:quotable_sl = l:s_arg[0]
   let b:quotable_sr = l:s_arg[1]
 
+  " sentence motion
+  " TODO needs markdown support
+  "let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
+  "let s:md_end   = '[_\*\]]*'
+  let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
+  let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
+  let b:quotable_sentence_re_i =
+        \ '\v\s*\zs' .
+        \ l:re_opening_quote .
+        \ '[[:upper:]]\_.{-}[\.\!\?]+' .
+        \ l:re_closing_quote
+  let b:quotable_sentence_re_a =
+        \ b:quotable_sentence_re_i . '($|\s*)'
+
   " support '%' navigation of quotable pairs
   if exists("b:match_words")
     if b:quotable_dl != b:quotable_dr
@@ -72,14 +86,13 @@ function! quotable#init(...)
     \         'select-i': 'i' . g:quotable#singleMotion,
     \      },
     \      'sentence-select': {
-    \         '*sfile*': expand('<sfile>:p'),
     \         'select-a': 'a' . g:quotable#sentenceMotion,
     \         'select-i': 'i' . g:quotable#sentenceMotion,
     \         '*select-a-function*': 'quotable#sentence#select_a',
     \         '*select-i-function*': 'quotable#sentence#select_i',
     \      },
     \      'sentence-move': {
-    \         'pattern': g:quotable#sentence#re_sentence_i,
+    \         'pattern': b:quotable_sentence_re_i,
     \         'move-p': '(',
     \         'move-n': ')',
     \         'move-P': 'g(',

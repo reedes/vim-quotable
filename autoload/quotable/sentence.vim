@@ -13,9 +13,9 @@ function! s:select(pattern)
 endfunction
 
 function! quotable#sentence#select_a()
-  return s:select(g:quotable#sentence#re_sentence_a)
+  return s:select(b:quotable_sentence_re_a)
 endfunction
 
 function! quotable#sentence#select_i()
-  return s:select(g:quotable#sentence#re_sentence_i)
+  return s:select(b:quotable_sentence_re_i)
 endfunction

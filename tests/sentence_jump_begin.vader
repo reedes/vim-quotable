@@ -49,3 +49,18 @@ Expect:
 
 ###########################################################
 
+Given:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
+
+Do (jump to start of third sentence):
+  ))rX
+
+Expect:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Xoo!
+
+###########################################################
+
