@@ -47,6 +47,7 @@ function! quotable#init(...)
   "let s:md_end   = '[_\*\]]*'
   let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
   let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
+  " '\v\_.{-}[\.\!\?]+\s*\zs' .
   let b:quotable_sentence_re_i =
         \ '\v\s*\zs' .
         \ l:re_opening_quote .
