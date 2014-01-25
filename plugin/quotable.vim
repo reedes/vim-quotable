@@ -8,8 +8,11 @@
 
 scriptencoding utf-8
 
-if exists('g:autoloaded_quotable') || &cp | finish | endif
-let g:autoloaded_quotable = 1
+if &cp || (exists('g:loaded_quotable')
+      \ && !exists('g:force_reload_quotable'))
+  finish
+endif
+let g:loaded_quotable = 1
 
 " Save 'cpoptions' and set Vim default to enable line continuations.
 let s:save_cpo = &cpo

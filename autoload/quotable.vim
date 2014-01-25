@@ -8,10 +8,11 @@
 
 scriptencoding utf-8
 
-if exists('g:loaded_quotable') && g:loaded_quotable
-  fini
-en
-let g:loaded_quotable = 1
+if &cp || (exists('g:autoloaded_quotable')
+      \ && !exists('g:force_reload_quotable'))
+  finish
+endif
+let g:autoloaded_quotable = 1
 
 " TODO support these constants
 "let s:KEY_MODE_DOUBLE = 1
