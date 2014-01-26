@@ -105,17 +105,38 @@ Expect:
 
 ###########################################################
 
-#Given:
-#  Frank:
-#
-#  We've caulked this, added water, and we've turned it into 
-#  Water Polo! Aw-haw-haw.
-#
-#Do (select isolated line ending with colon):
-#  vixU
-#
-#Expect:
-#  FRANK:
-#
-#  We've caulked this, added water, and we've turned it into 
-#  Water Polo! Aw-haw-haw.
+Given:
+  Frank:
+
+  We've caulked this, added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (select isolated line ending with colon):
+  vixU
+
+Expect:
+  FRANK:
+
+  We've caulked this, added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+###########################################################
+
+Given:
+  Frank:
+  - Crow
+  - Servo
+  - Gypsy
+
+  TV's Frank shouts Not the children. Aw-haw-haw.
+
+Do (select isolated line ending with colon):
+  vixU
+
+Expect:
+  FRANK:
+  - CROW
+  - SERVO
+  - GYPSY
+
+  TV's Frank shouts Not the children. Aw-haw-haw.

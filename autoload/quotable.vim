@@ -131,7 +131,7 @@ function! quotable#init(...)
 " /\vid(_\d$)@=  (very magic)
 "
   let b:quotable_sentence_re_i =
-        \ '\v([[:alnum:]]\_s*)@<![[:upper:]]\_.{-}[\.\!\?]'
+        \ '\v([[:alnum:]]\_s*)@<![[:upper:]]\_.{-}([\.\!\?]|\ze\n\n)'
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
 
