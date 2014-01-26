@@ -48,11 +48,11 @@ function! quotable#init(...)
   let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
   let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
   let l:re_negative_lookback = '([[:alnum:]]\_s*)@<!'
-  let l:re_sentence_term = '([\.\!\?]+[\”\’\"]?|\ze\n\n)'
+  let l:re_sentence_term = '([\.\!\?]+[”’"'']?|\ze\n\n)'
   let b:quotable_sentence_re_i =
         \ '\v' .
         \ l:re_negative_lookback .
-        \ '[[:upper:]]\_.{-}' .
+        \ '[“‘"'']?[[:upper:]]\_.{-}' .
         \ l:re_sentence_term
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
