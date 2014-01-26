@@ -136,6 +136,8 @@ function! quotable#init(...)
 "
 "        \ '\v(\.)@<![[:upper:]]\_.{-}[\.\!\?]+'
 "        \ '\v[[:upper:]]\_.{-}[\.\!\?]+'
+"        \ '\v(\n\s*\n\s*|\.\s*)@<=[[:upper:]]\_.{-}[\.\!\?]+'
+"        \ '\v(\.\_s*)@<=[[:upper:]]\_.{-}[\.\!\?]'
 "
 "  I want to match where the previous is    ****
 "    "!?. A"
@@ -143,7 +145,7 @@ function! quotable#init(...)
 "  OR, I want to match where previous is NOT
 "    ",:;a-z"
   let b:quotable_sentence_re_i =
-        \ '\v(\.\s*)@<=[[:upper:]]\_.{-}[\.\!\?]+'
+        \ '\v(\a\_s*)@<![[:upper:]]\_.{-}[\.\!\?]'
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
 
