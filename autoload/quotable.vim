@@ -95,8 +95,7 @@ function! quotable#init(...)
 "   follows. |/zero-width| {not in Vi}
 "   Like "(?<=pattern)" in Perl, but Vim allows non-fixed-width patterns.
 "   Example             matches ~
-"   \(an\_s\+\)\@<=file "file" after "an" and white space or an
-"         end-of-line
+"   \(an\_s\+\)\@<=file "file" after "an" and white space or an end-of-line
 "
 "Negative lookahead
 " \@! Matches with zero width if the preceding atom does NOT match at the
@@ -122,6 +121,12 @@ function! quotable#init(...)
 "    \(foo\)\@<!bar    any "bar" that's not in "foobar"
 "    \(\/\/.*\)\@<!in  "in" which is not after "//"
 "
+" \@>  Matches the preceding atom like matching a whole pattern. {not in Vi}
+"    Like "(?>pattern)" in Perl.
+"    Example     matches ~
+"    \(a*\)\@>a  nothing (the "a*" takes all the "a"'s, there can't be
+"                another one following)
+"
 " /id\(_\d$\)\@=
 " /\vid(_\d$)@=  (very magic)
 "
@@ -130,14 +135,15 @@ function! quotable#init(...)
 "        \ '[[:upper:]]\_.{-}[\.\!\?]+'
 "
 "        \ '\v(\.)@<![[:upper:]]\_.{-}[\.\!\?]+'
+"        \ '\v[[:upper:]]\_.{-}[\.\!\?]+'
 "
 "  I want to match where the previous is    ****
-"    "!?. "
+"    "!?. A"
 "    "\n\n "
 "  OR, I want to match where previous is NOT
 "    ",:;a-z"
   let b:quotable_sentence_re_i =
-        \ '\v((\.\s*)@<![[:upper:]])\_.{-}[\.\!\?]+'
+        \ '\v(\.\s*)@<=[[:upper:]]\_.{-}[\.\!\?]+'
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
 

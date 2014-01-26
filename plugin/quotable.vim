@@ -48,9 +48,9 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 
 " commands to toggle key mappings
-command -nargs=0 QuotableEducateOn call quotable#educate#mapKeys(1)
-command -nargs=0 QuotableEducateOff call quotable#educate#mapKeys(0)
-command -nargs=0 QuotableEducateToggle call quotable#educate#toggleMappings()
+command! -nargs=0 QuotableEducateOn call quotable#educate#mapKeys(1)
+command! -nargs=0 QuotableEducateOff call quotable#educate#mapKeys(0)
+command! -nargs=0 QuotableEducateToggle call quotable#educate#toggleMappings()
 
 " replace quotes in bulk
 nnoremap <Plug>QuotableReplaceWithCurly    :call quotable#replace#replace(1, '')<cr>

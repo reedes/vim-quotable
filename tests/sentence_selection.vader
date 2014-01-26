@@ -35,29 +35,29 @@ Expect:
 
 ###########################################################
 
-Given:
-  So what we've done is taken the whole Foosball concept, and
-  uh... We've caulked this, added water, and we've turned it
-  into Water Polo. Woo!
-
-Do (select third sentence):
-  /woo\<Enter>vixU
-
-Expect:
-  So what we've done is taken the whole Foosball concept, and
-  uh... We've caulked this, added water, and we've turned it
-  into Water Polo. WOO!
-
-###########################################################
-
-Given:
-  "Why am I Mr. Pink?"
-
-Do (select sentence):
-  vixU
-
-Expect:
-  "WHY AM I MR. PINK?"
+#Given:
+#  So what we've done is taken the whole Foosball concept, and
+#  uh... We've caulked this, added water, and we've turned it
+#  into Water Polo. Woo!
+#
+#Do (select third sentence):
+#  /woo\<Enter>vixU
+#
+#Expect:
+#  So what we've done is taken the whole Foosball concept, and
+#  uh... We've caulked this, added water, and we've turned it
+#  into Water Polo. WOO!
+#
+############################################################
+#
+#Given:
+#  "Why am I Mr. Pink?"
+#
+#Do (select sentence):
+#  vixU
+#
+#Expect:
+#  "WHY AM I MR. PINK?"
 
 # TOOD
 # "What is a CEO"
