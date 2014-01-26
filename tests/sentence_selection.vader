@@ -50,3 +50,18 @@ Expect:
 
 ###########################################################
 
+Given:
+  "Why am I Mr. Pink?"
+
+Do (select sentence):
+  vixU
+
+Expect:
+  "WHY AM I MR. PINK?"
+
+# TOOD
+# "What is a CEO"
+# "What is a geisha?"
+# "What is ``R.E.M.``?"
+# "What's SCUBA?"
+

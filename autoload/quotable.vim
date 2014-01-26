@@ -48,11 +48,96 @@ function! quotable#init(...)
   let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
   let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
   " '\v\_.{-}[\.\!\?]+\s*\zs' .
+  "let b:quotable_sentence_re_i =
+  "      \ '\v\s*\zs' .
+  "      \ '[[:upper:]]\_.{-}[\.\!\?]+'
+        " l:re_opening_quote .
+        " l:re_closing_quote
+"# Match a sentence ending in punctuation or EOS.\n" +
+"            "[^.!?\\s]    # First char is non-punct, non-ws\n" +
+"            "[^.!?]*      # Greedily consume up to punctuation.\n" +
+"            "(?:          # Group for unrolling the loop.\n" +
+"            "  [.!?]      # (special) inner punctuation ok if\n" +
+"            "  (?!['\"]?\\s|$)  # not followed by ws or EOS.\n" +
+"            "  [^.!?]*    # Greedily consume up to punctuation.\n" +
+"            ")*           # Zero or more (special normal*)\n" +
+"            "[.!?]?       # Optional ending punctuation.\n" +
+"            "['\"]?       # Optional closing quote.\n" +
+"            "(?=\\s|$)",
+"            Pattern.MULTILINE | Pattern.COMMENTS);
+" String regex = "^\\s+[A-Za-z,;'\"\\s]+[.?!]$"
+"                "^\\s+[a-zA-Z\\s]+[.?!]$"
+" ["']?[A-Z][^.?!]+((?![.?!]['"]?\s["']?[A-Z][^.?!]).)+[.?!'"]+
+" ^.*?[\.!\?](?:\s|$)
+" http://cpansearch.perl.org/src/SHLOMOY/Lingua-EN-Sentence-0.25/lib/Lingua/EN/Sentence.pm
+" http://cpansearch.perl.org/src/NEILB/HTML-Summary-0.019/lib/Text/Sentence.pm
+"
+" /\(.\{-}\zsFab\)\{3}
+" Finds the third occurrence of "Fab".
+"
+" \{-}  matches 0 or more of the preceding atom, as few as possible
+" \_.*  everything up to the end of the buffer
+"
+" Match within a "quoted string"
+" /\v"\zs[^"]+\ze"
+" Negative version:
+" /\v"@<=[^"]+"@=
+"
+"Positive lookahead:
+" \@= Matches the preceding atom with zero width. {not in Vi}
+"    Like "(?=pattern)" in Perl.
+"    Example             matches ~
+"    foo\(bar\)\@=       "foo" in "foobar"
+"    foo\(bar\)\@=foo    nothing
+"
+"Positive lookbehind:
+" \@<=  Matches with zero width if the preceding atom matches just before what
+"   follows. |/zero-width| {not in Vi}
+"   Like "(?<=pattern)" in Perl, but Vim allows non-fixed-width patterns.
+"   Example             matches ~
+"   \(an\_s\+\)\@<=file "file" after "an" and white space or an
+"         end-of-line
+"
+"Negative lookahead
+" \@! Matches with zero width if the preceding atom does NOT match at the
+"   current position. |/zero-width| {not in Vi}
+"   Like "(?!pattern)" in Perl.
+"   Example                 matches ~
+"   foo\(bar\)\@!           any "foo" not followed by "bar"
+"   a.\{-}p\@!              "a", "ap", "app", "appp", etc. not immediately
+"                           followed by a "p"
+"   if \(\(then\)\@!.\)*$   "if " not followed by "then"
+"
+"Negative lookbehind
+" \@<!  Matches with zero width if the preceding atom does NOT match just
+"    before what follows.  Thus this matches if there is no position in the
+"    current or previous line where the atom matches such that it ends just
+"    before what follows.  |/zero-width| {not in Vi}
+"    Like "(?<!pattern)" in Perl, but Vim allows non-fixed-width patterns.
+"    The match with the preceding atom is made to end just before the match
+"    with what follows, thus an atom that ends in ".*" will work.
+"    Warning: This can be slow (because many positions need to be checked
+"    for a match).  Use a limit if you can, see below.
+"    Example           matches ~
+"    \(foo\)\@<!bar    any "bar" that's not in "foobar"
+"    \(\/\/.*\)\@<!in  "in" which is not after "//"
+"
+" /id\(_\d$\)\@=
+" /\vid(_\d$)@=  (very magic)
+"
+"  let b:quotable_sentence_re_i =
+"        \ '\v\s*\zs' .
+"        \ '[[:upper:]]\_.{-}[\.\!\?]+'
+"
+"        \ '\v(\.)@<![[:upper:]]\_.{-}[\.\!\?]+'
+"
+"  I want to match where the previous is    ****
+"    "!?. "
+"    "\n\n "
+"  OR, I want to match where previous is NOT
+"    ",:;a-z"
   let b:quotable_sentence_re_i =
-        \ '\v\s*\zs' .
-        \ l:re_opening_quote .
-        \ '[[:upper:]]\_.{-}[\.\!\?]+' .
-        \ l:re_closing_quote
+        \ '\v((\.\s*)@<![[:upper:]])\_.{-}[\.\!\?]+'
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
 
