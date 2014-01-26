@@ -1,7 +1,7 @@
 Execute (Clean up test environment):
   call quotable#init()
 
-# TODO tests with quotes
+# TODO tests with parenthesis
 # TODO tests with punctuation
 
 #Given:
@@ -232,5 +232,20 @@ Do (select sentence with single straight curly quote):
 
 Expect:
   Scene. X“Not the children, Aw-haw-haw,” shouted TV’s Frank.
+
+###########################################################
+
+# TODO is this correct?
+
+Given:
+  I said
+  “No. THANK YOU.”
+
+Do (select sentence with curly quotes):
+  vix\<Esc>`>aX
+
+Expect:
+  I said
+  “No.X THANK YOU.”
 
 ###########################################################
