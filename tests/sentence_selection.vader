@@ -2,6 +2,16 @@ Execute (Clean up test environment):
   call quotable#init()
 
 # TODO tests with quotes
+# TODO tests with punctuation
+
+#Given:
+#  "Why am I Mr. Pink?"
+#
+#Do (select sentence):
+#  vixU
+#
+#Expect:
+#  "WHY AM I MR. PINK?"
 
 ###########################################################
 
@@ -35,33 +45,62 @@ Expect:
 
 ###########################################################
 
-#Given:
-#  So what we've done is taken the whole Foosball concept, and
-#  uh... We've caulked this, added water, and we've turned it
-#  into Water Polo. Woo!
-#
-#Do (select third sentence):
-#  /woo\<Enter>vixU
-#
-#Expect:
-#  So what we've done is taken the whole Foosball concept, and
-#  uh... We've caulked this, added water, and we've turned it
-#  into Water Polo. WOO!
-#
-############################################################
-#
-#Given:
-#  "Why am I Mr. Pink?"
-#
-#Do (select sentence):
-#  vixU
-#
-#Expect:
-#  "WHY AM I MR. PINK?"
+Given:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. Woo!
 
-# TOOD
-# "What is a CEO"
-# "What is a geisha?"
-# "What is ``R.E.M.``?"
-# "What's SCUBA?"
+Do (select third sentence):
+  /woo\<Enter>vixU
 
+Expect:
+  So what we've done is taken the whole Foosball concept, and
+  uh... We've caulked this, added water, and we've turned it
+  into Water Polo. WOO!
+
+###########################################################
+
+Given:
+  We've caulked this, added water, and we've turned it into Water Polo. TV's
+  Frank not the children. Aw-haw-haw. The other day, my colon looked up
+  at me and said, “Frank, thank you.”
+
+Do (select line starting with upper):
+  /Frank\<Enter>vixu
+
+Expect:
+  We've caulked this, added water, and we've turned it into Water Polo. tv's
+  frank not the children. Aw-haw-haw. The other day, my colon looked up
+  at me and said, “Frank, thank you.”
+
+###########################################################
+
+Given:
+  Frank:
+  We've caulked this, added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (select line ending with colon):
+  vixU
+
+Expect:
+  FRANK:
+  WE'VE CAULKED THIS, ADDED WATER, AND WE'VE TURNED IT INTO 
+  WATER POLO! Aw-haw-haw.
+
+###########################################################
+
+Given:
+  Frank:
+
+  We've caulked this, added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (select isolated line ending with colon):
+  vixU
+
+Expect:
+  FRANK:
+
+  We've caulked this, added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
