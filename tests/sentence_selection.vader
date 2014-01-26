@@ -241,11 +241,63 @@ Given:
   I said
   “No. THANK YOU.”
 
-Do (select sentence with curly quotes):
+Do (two sentences within curly quotes):
   vix\<Esc>`>aX
 
 Expect:
   I said
   “No.X THANK YOU.”
+
+###########################################################
+
+Given:
+  The other day, my colon looked up
+  at me and said, Frank, thank you.
+
+Do (comma before upper case):
+  /Frank\<Enter>vixU
+
+Expect:
+  THE OTHER DAY, MY COLON LOOKED UP
+  AT ME AND SAID, FRANK, THANK YOU.
+
+###########################################################
+
+Given:
+  The other day, my colon looked up
+  at me and said-Frank-thank you.
+
+Do (dash before upper case):
+  /Frank\<Enter>vixU
+
+Expect:
+  THE OTHER DAY, MY COLON LOOKED UP
+  AT ME AND SAID-FRANK-THANK YOU.
+
+###########################################################
+
+Given:
+  The other day, my colon looked up
+  at me and said;Frank;thank you.
+
+Do (semi-colon before upper case):
+  /Frank\<Enter>vixU
+
+Expect:
+  THE OTHER DAY, MY COLON LOOKED UP
+  AT ME AND SAID;FRANK;THANK YOU.
+
+###########################################################
+
+Given:
+  The other day, my colon looked up
+  at me and said: Frank, thank you.
+
+Do (colon before upper case):
+  /Frank\<Enter>vixU
+
+Expect:
+  THE OTHER DAY, MY COLON LOOKED UP
+  AT ME AND SAID: FRANK, THANK YOU.
 
 ###########################################################
