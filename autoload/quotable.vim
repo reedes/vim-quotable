@@ -130,22 +130,8 @@ function! quotable#init(...)
 " /id\(_\d$\)\@=
 " /\vid(_\d$)@=  (very magic)
 "
-"  let b:quotable_sentence_re_i =
-"        \ '\v\s*\zs' .
-"        \ '[[:upper:]]\_.{-}[\.\!\?]+'
-"
-"        \ '\v(\.)@<![[:upper:]]\_.{-}[\.\!\?]+'
-"        \ '\v[[:upper:]]\_.{-}[\.\!\?]+'
-"        \ '\v(\n\s*\n\s*|\.\s*)@<=[[:upper:]]\_.{-}[\.\!\?]+'
-"        \ '\v(\.\_s*)@<=[[:upper:]]\_.{-}[\.\!\?]'
-"
-"  I want to match where the previous is    ****
-"    "!?. A"
-"    "\n\n "
-"  OR, I want to match where previous is NOT
-"    ",:;a-z"
   let b:quotable_sentence_re_i =
-        \ '\v(\a\_s*)@<![[:upper:]]\_.{-}[\.\!\?]'
+        \ '\v([[:alnum:]]\_s*)@<![[:upper:]]\_.{-}[\.\!\?]'
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'
 

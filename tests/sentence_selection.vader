@@ -91,16 +91,31 @@ Expect:
 ###########################################################
 
 Given:
-  Frank:
-
+  The number 12abc34
   We've caulked this, added water, and we've turned it into 
   Water Polo! Aw-haw-haw.
 
-Do (select isolated line ending with colon):
-  vixU
+Do (select line preceded by number):
+  jvixU
 
 Expect:
-  FRANK:
+  THE NUMBER 12ABC34
+  WE'VE CAULKED THIS, ADDED WATER, AND WE'VE TURNED IT INTO 
+  WATER POLO! Aw-haw-haw.
 
-  We've caulked this, added water, and we've turned it into 
-  Water Polo! Aw-haw-haw.
+###########################################################
+
+#Given:
+#  Frank:
+#
+#  We've caulked this, added water, and we've turned it into 
+#  Water Polo! Aw-haw-haw.
+#
+#Do (select isolated line ending with colon):
+#  vixU
+#
+#Expect:
+#  FRANK:
+#
+#  We've caulked this, added water, and we've turned it into 
+#  Water Polo! Aw-haw-haw.
