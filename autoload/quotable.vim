@@ -45,8 +45,9 @@ function! quotable#init(...)
   " TODO needs markdown support
   "let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
   "let s:md_end   = '[_\*\]]*'
-  let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
-  let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
+  " TODO dynamic quote support
+  "let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
+  "let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
   let l:re_negative_lookback = '([[:alnum:]]\_s*)@<!'
   let l:re_sentence_term = '([\.\!\?]+[”’"'']?|\ze\n\n)'
   let b:quotable_sentence_re_i =
