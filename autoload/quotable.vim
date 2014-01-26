@@ -41,19 +41,30 @@ function! quotable#init(...)
   let b:quotable_sl = l:s_arg[0]
   let b:quotable_sr = l:s_arg[1]
 
+  " http://search.cpan.org/~shlomoy/Lingua-EN-Sentence-0.25/lib/Lingua/EN/Sentence.pm
+  " acronym challenge - see \@! and \%[]
+  " mr ms mrs dr drs lt gen
+  " M(r|s|rs)@!   any 'M' not followed by r or s or rs
+  " Need to match upper character, but exclude a bunch of words that follow
+  " Match words that start with Upper and end with '.', excluding 'Mr.', 'Dr.', 'Ms.'
+
   " sentence motion
-  " TODO needs markdown support
-  "let s:md_start = '[_\*\[]*'    " one or more markdown chars for bold/italic/link
-  "let s:md_end   = '[_\*\]]*'
+  " TODO markdown support (bold, italic, link)
   " TODO dynamic quote support
-  "let l:re_opening_quote = '[\' . b:quotable_sl . '\' . b:quotable_dl . ']*'
-  "let l:re_closing_quote = '[\' . b:quotable_sr . '\' . b:quotable_dr . ']*'
-  let l:re_negative_lookback = '([[:alnum:]]([,;:-]|\_s)*)@<!'
-  let l:re_sentence_term = '([\.\!\?]+[”’"'']?|\ze\n\n)'
+
+  " Avoid matching where more sentence can be found on preceding line(s)
+  let l:re_negative_lookback = '([[:alnum:]]([–—,;:-]|\_s)*)@<!'
+
+  " body starts with an uppercase character (excluding acronyms)
+  let l:re_sentence_body = '[“‘"'']?[[:upper:]]\_.{-}'
+
+  " terminate with either punctuation or a couple of linefeeds
+  let l:re_sentence_term = '([.!?]+[”’"'']?|\ze\n\n)'
+
   let b:quotable_sentence_re_i =
         \ '\v' .
         \ l:re_negative_lookback .
-        \ '[“‘"'']?[[:upper:]]\_.{-}' .
+        \ l:re_sentence_body .
         \ l:re_sentence_term
   let b:quotable_sentence_re_a =
         \ b:quotable_sentence_re_i . '($|\s*)'

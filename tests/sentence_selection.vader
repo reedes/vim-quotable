@@ -3,15 +3,7 @@ Execute (Clean up test environment):
 
 # TODO tests with parenthesis
 # TODO tests with punctuation
-
-#Given:
-#  "Why am I Mr. Pink?"
-#
-#Do (select sentence):
-#  vixU
-#
-#Expect:
-#  "WHY AM I MR. PINK?"
+# TODO tests with markdown
 
 ###########################################################
 
@@ -95,11 +87,41 @@ Given:
   Added water, and we've turned it into 
   Water Polo! Aw-haw-haw.
 
-Do (select line ending with dash):
+Do (select sentence with em dash):
   vixU
 
 Expect:
   WE'VE CAULKED THIS—
+  ADDED WATER, AND WE'VE TURNED IT INTO 
+  WATER POLO! Aw-haw-haw.
+
+###########################################################
+
+Given:
+  We've caulked this—
+  Added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (from below, select sentence with em dash):
+  jjvixU
+
+Expect:
+  WE'VE CAULKED THIS—
+  ADDED WATER, AND WE'VE TURNED IT INTO 
+  WATER POLO! Aw-haw-haw.
+
+###########################################################
+
+Given:
+  We've caulked this–
+  Added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (from below, select sentence with en dash):
+  jjvixU
+
+Expect:
+  WE'VE CAULKED THIS–
   ADDED WATER, AND WE'VE TURNED IT INTO 
   WATER POLO! Aw-haw-haw.
 
@@ -299,5 +321,16 @@ Do (colon before upper case):
 Expect:
   THE OTHER DAY, MY COLON LOOKED UP
   AT ME AND SAID: FRANK, THANK YOU.
+
+###########################################################
+
+Given:
+  "Why am _I_ Mr. Pink?"
+
+Do (select sentence with Mr.):
+  vixU
+
+Expect:
+  "WHY AM _I_ MR. PINK?"
 
 ###########################################################
