@@ -3,6 +3,7 @@ if exists('g:loaded_quotable_sentence') && g:loaded_quotable_sentence
 en
 let g:loaded_quotable_sentence = 1
 
+
 " sentence motion/select
 function! s:select(pattern)
   call search(a:pattern, 'bc')
