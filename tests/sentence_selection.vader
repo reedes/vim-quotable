@@ -91,6 +91,21 @@ Expect:
 ###########################################################
 
 Given:
+  We've caulked this—
+  Added water, and we've turned it into 
+  Water Polo! Aw-haw-haw.
+
+Do (select line ending with dash):
+  vixU
+
+Expect:
+  WE'VE CAULKED THIS—
+  ADDED WATER, AND WE'VE TURNED IT INTO 
+  WATER POLO! Aw-haw-haw.
+
+###########################################################
+
+Given:
   The number 12abc34
   We've caulked this, added water, and we've turned it into 
   Water Polo! Aw-haw-haw.
@@ -140,3 +155,27 @@ Expect:
   - GYPSY
 
   TV's Frank shouts Not the children. Aw-haw-haw.
+
+###########################################################
+
+Given:
+  TV's Frank [shouts] "Not the children, Aw-haw-haw."
+
+Do (select sentence with straight quotes):
+  vixAX
+
+Expect:
+  TV's Frank [shouts] "Not the children, Aw-haw-haw."X
+
+###########################################################
+
+Given:
+  TV's Frank [shouts] “Not the children, Aw-haw-haw.”
+
+Do (select sentence with curly quotes):
+  vixAX
+
+Expect:
+  TV's Frank [shouts] “Not the children, Aw-haw-haw.”X
+
+###########################################################
