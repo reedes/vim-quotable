@@ -24,10 +24,6 @@ endif
 if !exists('g:quotable#singleMotion')
   let g:quotable#singleMotion = 'Q'
 endif
-if !exists('g:quotable#sentenceMotion')
-  "let g:quotable#sentenceMotion = 's'
-  let g:quotable#sentenceMotion = 'x'  " for testing only
-endif
 
 let g:quotable#doubleStandard = '“”'
 let g:quotable#singleStandard = '‘’'

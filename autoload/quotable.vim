@@ -41,54 +41,6 @@ function! quotable#init(...)
   let b:quotable_sl = l:s_arg[0]
   let b:quotable_sr = l:s_arg[1]
 
-  " sentence motion
-  " TODO markdown support (bold, italic, link)
-  " TODO dynamic quote support
-
-  " Avoid matching where more of the sentence can be found on preceding line(s)
-  let l:re_negative_lookback = '([[:alnum:]]([–—,;:-]|\_s)*)@<!'
-
-  " body (sans term) starts with an uppercase character (excluding acronyms)
-  let l:re_sentence_body = '[“‘"'']?[[:upper:]]\_.{-}'
-
-  " terminate with either punctuation or a couple of linefeeds
-  "\(foo\)\@<!bar
-  " via http://cpansearch.perl.org/src/SHLOMOY/Lingua-EN-Sentence-0.25/lib/Lingua/EN/Sentence.pm
-  let l:PEOPLE = [ 'Jr', 'Mr', 'Mrs', 'Ms', 'Dr', 'Prof', 'Sr', 'Sens?', 'Reps?', 'Gov',
-        \ 'Attys?', 'Supt',  'Det', 'Rev' ]
-  "let l:ARMY = [ 'col', 'gen', 'lt', 'cmdr', 'adm', 'capt', 'sgt', 'cpl', 'maj' ]
-  "let l:INSTITUTES = [ 'dept', 'univ', 'assn', 'bros' ]
-  "let l:COMPANIES = [ 'inc', 'ltd', 'co', 'corp' ]
-  "let l:PLACES = [ 'arc', 'al', 'ave', 'blv?d', 'cl', 'ct', 'cres', 'dr', 'expy?',
-  "      \ 'dist', 'mt', 'ft',
-  "      \ 'fw?y', 'hwa?y', 'la', 'pde?', 'pl', 'plz', 'rd', 'st', 'tce',
-  "      \ 'Ala' , 'Ariz', 'Ark', 'Cal', 'Calif', 'Col', 'Colo', 'Conn',
-  "      \ 'Del', 'Fed' , 'Fla', 'Ga', 'Ida', 'Id', 'Ill', 'Ind', 'Ia',
-  "      \ 'Kan', 'Kans', 'Ken', 'Ky' , 'La', 'Me', 'Md', 'Is', 'Mass', 
-  "      \ 'Mich', 'Minn', 'Miss', 'Mo', 'Mont', 'Neb', 'Nebr' , 'Nev',
-  "      \ 'Mex', 'Okla', 'Ok', 'Ore', 'Penna', 'Penn', 'Pa'  , 'Dak',
-  "      \ 'Tenn', 'Tex', 'Ut', 'Vt', 'Va', 'Wash', 'Wis', 'Wisc', 'Wy',
-  "      \ 'Wyo', 'USAFA', 'Alta' , 'Man', 'Ont', 'Qué', 'Sask', 'Yuk']
-  "let l:MONTHS = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'sept']
-  "let l:MISC = [ 'vs', 'etc', 'no', 'esp' ]
-  "let l:abbrs = l:PEOPLE + l:ARMY + l:INSTITUTES + l:COMPANIES + l:PLACES + l:MONTHS + l:MISC
-  let l:abbrs = l:PEOPLE
-  let l:re_abbrev_neg_lookback = '(' . join(l:abbrs,'|') . ')@<!'
-
-  " matching against end of sentence, '!', '?', and non-abbrev '.'
-  let l:re_term = '([!?]|(' . l:re_abbrev_neg_lookback . '\.))+[”’"'']?'
-
-  " sentence can also end when followed by at least two line feeds
-  let l:re_sentence_term = '(' . l:re_term . '|\ze\n\n)'
-
-  let b:quotable_sentence_re_i =
-        \ '\v' .
-        \ l:re_negative_lookback .
-        \ l:re_sentence_body .
-        \ l:re_sentence_term
-  let b:quotable_sentence_re_a =
-        \ b:quotable_sentence_re_i . '($|\s*)'
-
   " support '%' navigation of quotable pairs
   if exists("b:match_words")
     if b:quotable_dl != b:quotable_dr
@@ -119,19 +71,6 @@ function! quotable#init(...)
     \                        b:quotable_sr . (b:quotable_sr ==# '’' ? l:xtra : '') ],
     \         'select-a': 'a' . g:quotable#singleMotion,
     \         'select-i': 'i' . g:quotable#singleMotion,
-    \      },
-    \      'sentence-select': {
-    \         'select-a': 'a' . g:quotable#sentenceMotion,
-    \         'select-i': 'i' . g:quotable#sentenceMotion,
-    \         '*select-a-function*': 'quotable#sentence#select_a',
-    \         '*select-i-function*': 'quotable#sentence#select_i',
-    \      },
-    \      'sentence-move': {
-    \         'pattern': b:quotable_sentence_re_i,
-    \         'move-p': '(',
-    \         'move-n': ')',
-    \         'move-P': 'g(',
-    \         'move-N': 'g)',
     \      },
     \})
   catch /E117/
