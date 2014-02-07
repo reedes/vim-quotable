@@ -1,3 +1,15 @@
+- - -
+- - -
+- - -
+- - -
+**IMPORTANT NOTE: This plugin is undergoing a major rewrite and will see a rename.
+
+The 'vim-quotable' project will remain, but in a DEPRECATED state.**
+- - -
+- - -
+- - -
+- - -
+
 # vim-quotable
 
 > “Extending Vim to better support typographic (‘curly’) quote characters.”
