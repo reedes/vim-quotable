@@ -1,14 +1,15 @@
 - - -
 - - -
 - - -
-- - -
-**IMPORTANT NOTE: This plugin is undergoing a major rewrite and will see a rename.
+- - - **IMPORTANT NOTE:**
 
-The 'vim-quotable' project will remain, but in a DEPRECATED state.**
+**This project will soon be deprecated and replaced by [vim-textobj-quote][vq]**
 - - -
 - - -
 - - -
 - - -
+
+[vq]: https://github.com/reedes/vim-textobj-quote
 
 # vim-quotable
 
